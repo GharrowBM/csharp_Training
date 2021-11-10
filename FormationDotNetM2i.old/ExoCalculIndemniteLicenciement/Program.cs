@@ -22,7 +22,7 @@ namespace ExoCalculIndemniteLicenciement
 
                 if (years  > 10)
                 {
-                    result = lastSalary * years;
+                    result = lastSalary * (years - 10) + lastSalary / 2  * 10;
                 } else if (years > 0)
                 {
                     result = lastSalary / 2 * years;

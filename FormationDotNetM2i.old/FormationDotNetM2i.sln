@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExoTailleVetements", "ExoTa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExoCalculIndemniteLicenciement", "ExoCalculIndemniteLicenciement\ExoCalculIndemniteLicenciement.csproj", "{F0610AF0-3780-4EF1-A49C-CFB7DCE97EA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExoCalculImpots", "ExoCalculImpots\ExoCalculImpots.csproj", "{6DBD4D94-2C3A-47A6-AC8F-A9317996D550}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExoCalculImpots", "ExoCalculImpots\ExoCalculImpots.csproj", "{6DBD4D94-2C3A-47A6-AC8F-A9317996D550}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
