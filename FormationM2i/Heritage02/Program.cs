@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HeritageSalarie
+namespace Heritage02
 {
     internal class Program
     {

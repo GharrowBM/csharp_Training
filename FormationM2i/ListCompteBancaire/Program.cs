@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HeritageSalarie
+namespace ListCompteBancaire
 {
     internal class Program
     {
