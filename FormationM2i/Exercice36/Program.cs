@@ -48,5 +48,6 @@ namespace Exercice36
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"La moyenne des notes est {notes.Average()}/20");
             }
+        }
     }
 }
