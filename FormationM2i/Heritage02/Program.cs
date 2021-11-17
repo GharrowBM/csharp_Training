@@ -1,4 +1,5 @@
 ﻿using System;
+using Heritage02.Views;
 
 namespace Heritage02
 {
@@ -6,7 +7,7 @@ namespace Heritage02
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new IHM().Start();
         }
     }
 }
