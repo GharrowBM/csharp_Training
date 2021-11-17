@@ -1,4 +1,6 @@
 ﻿using System;
+using HeritageSalarie.Views;
+
 
 namespace HeritageSalarie
 {
@@ -6,7 +8,7 @@ namespace HeritageSalarie
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new IHM(5).Demarrer();
         }
     }
 }

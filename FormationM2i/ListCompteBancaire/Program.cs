@@ -6,6 +6,7 @@ namespace ListCompteBancaire
     {
         static void Main(string[] args)
         {
+            // TODO Faire l'exo ;)
             Console.WriteLine("Hello World!");
         }
     }
