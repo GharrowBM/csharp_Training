@@ -10,8 +10,6 @@ namespace Heritage03.Models
     {
         private T[] table;
 
-        public T[] Table { get { return table; } }
-
         public Stock(int size)
         {
             table = new T[size];
