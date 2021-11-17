@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Heritage03.Models;
+using System;
 
 namespace Heritage03
 {
@@ -6,7 +7,23 @@ namespace Heritage03
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Stock<int> list = new Stock<int>(5);
+
+
+            for (int i = 0; i <= 5; i++)
+            {
+                list.Add(i);
+            }
+
+            list.Remove(3);
+
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine(list.Find(i));
+            }
+
+
         }
     }
 }
