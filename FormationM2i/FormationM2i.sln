@@ -109,7 +109,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListCompteBancaire", "ListC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel", "Hotel\Hotel.csproj", "{B7A549C6-487A-4CD2-97F8-86B3E982F2A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExoAbstractInterface", "ExoAbstractInterface\ExoAbstractInterface.csproj", "{51D388D8-75EE-4298-8214-2B2B6C8AE917}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExoAbstractInterface", "ExoAbstractInterface\ExoAbstractInterface.csproj", "{51D388D8-75EE-4298-8214-2B2B6C8AE917}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{37CB1B39-D124-4A5C-B835-9D915C5A86D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLs", "SQLs", "{D4BF1A45-9AB0-4947-8A4E-5624BC7D6E8F}"
+	ProjectSection(SolutionItems) = preProject
+		SQL\AjoutLivre.sql = SQL\AjoutLivre.sql
+		SQL\CorrectionSQLExercice1.sql = SQL\CorrectionSQLExercice1.sql
+		SQL\CorrectionSQLExercice2.sql = SQL\CorrectionSQLExercice2.sql
+		CorrectionSQLExercice3.sql = CorrectionSQLExercice3.sql
+		SQL\Cours.sql = SQL\Cours.sql
+		SQL\departement.sql = SQL\departement.sql
+		SQL\villes_france_sqlserver.sql = SQL\villes_france_sqlserver.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
