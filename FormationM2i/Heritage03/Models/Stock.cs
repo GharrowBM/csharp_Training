@@ -9,6 +9,7 @@ namespace Heritage03.Models
     internal class Stock<T>
     {
         private T[] table;
+        public event Action Event;
 
         public Stock(int size)
         {
@@ -17,7 +18,7 @@ namespace Heritage03.Models
 
         public void Add(T element)
         {
-            for (int i=0; i<table.Length; i++)
+            for (int i = 0; i < table.Length; i++)
             {
                 if (table[i].Equals(default(T)))
                 {
@@ -26,6 +27,9 @@ namespace Heritage03.Models
                 }
             }
         }
+
+        public T this[int index] { get { return table[index]; } }
+
 
         public void Remove(T element)
         {
@@ -41,9 +45,17 @@ namespace Heritage03.Models
 
         public T Find(int index)
         {
-            if (table[index] != null ) return table[index];
+            if (table[index] != null) return table[index];
 
             return default(T);
+        }
+
+        public void FullStockEvent()
+        {
+            if (Event != null)
+            {
+                Event();
+            }
         }
     }
 }
