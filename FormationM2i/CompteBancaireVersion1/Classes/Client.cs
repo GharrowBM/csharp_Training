@@ -81,17 +81,17 @@ namespace CompteBancaireVersion1.Classes
             return id > 0;
         }
 
-        public bool addAccount()
+        public static bool addAccount(Compte compte)
         {
             connection = DB.Connection;
             request = "ALTER TABLE client SET compte_id = @compte;";
             command = new SqlCommand(request, connection);
-            command.Parameters.Add(new SqlParameter("@compte", Compte.GetAccountFromClient(this)));
+            command.Parameters.Add(new SqlParameter("@compte", compte.Id));
             connection.Open();
-            id = (int)command.ExecuteScalar();
+            int nbRow = command.ExecuteNonQuery();
             command.Dispose();
             connection.Close();
-            return id > 0;
+            return nbRow > 0;
         }
     }
 }
