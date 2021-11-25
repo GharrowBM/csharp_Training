@@ -3,8 +3,7 @@
 	id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	nom VARCHAR(150),
 	prenom VARCHAR(150),
-	telephone VARCHAR(15),
-	compte_id INT
+	telephone VARCHAR(15)
 )
 
 CREATE TABLE operations

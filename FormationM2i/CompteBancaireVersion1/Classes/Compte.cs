@@ -112,7 +112,7 @@ namespace CompteBancaireVersion1.Classes
             request = "INSERT INTO comptes (solde, client_id) OUTPUT INSERTED.ID VALUES (@solde, @client);";
             command = new SqlCommand(request, connection);
             command.Parameters.Add(new SqlParameter("@solde", solde));
-            command.Parameters.Add(new SqlParameter("@client", client));
+            command.Parameters.Add(new SqlParameter("@client", client.Id));
             connection.Open();
             id = (int)command.ExecuteScalar();
             command.Dispose();
