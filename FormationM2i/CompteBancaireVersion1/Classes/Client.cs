@@ -64,5 +64,34 @@ namespace CompteBancaireVersion1.Classes
 
             return client;
         }
+
+        public bool Save()
+        {
+
+            connection = DB.Connection;
+            request = "INSERT INTO clients (nom, prenom, telephone) OUTPUT INSERTED.ID VALUES (@nom, @prenom, @telephone);";
+            command = new SqlCommand(request, connection);
+            command.Parameters.Add(new SqlParameter("@nom", nom));
+            command.Parameters.Add(new SqlParameter("@prenom", prenom));
+            command.Parameters.Add(new SqlParameter("@telephone", telephone));
+            connection.Open();
+            id = (int)command.ExecuteScalar();
+            command.Dispose();
+            connection.Close();
+            return id > 0;
+        }
+
+        public bool addAccount()
+        {
+            connection = DB.Connection;
+            request = "ALTER TABLE client SET compte_id = @compte;";
+            command = new SqlCommand(request, connection);
+            command.Parameters.Add(new SqlParameter("@compte", Compte.GetAccountFromClient(this)));
+            connection.Open();
+            id = (int)command.ExecuteScalar();
+            command.Dispose();
+            connection.Close();
+            return id > 0;
+        }
     }
 }

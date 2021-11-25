@@ -13,7 +13,6 @@ namespace CompteBancaireVersion1.Classes
         private decimal solde;
         private Client client;
         private List<Operation> operations;
-        private static int compteur = 0;
         public static string request;
         public static SqlCommand command;
         public static SqlConnection connection;
@@ -26,8 +25,6 @@ namespace CompteBancaireVersion1.Classes
         public Compte()
         {
             operations = new List<Operation>();
-            solde = 0;
-            id = ++compteur;
         }
 
         public virtual bool Depot(Operation operation)
@@ -106,6 +103,21 @@ namespace CompteBancaireVersion1.Classes
             connection.Close();
 
             return comptes;
+        }
+
+        public bool Save()
+        {
+
+            connection = DB.Connection;
+            request = "INSERT INTO comptes (solde, client_id) OUTPUT INSERTED.ID VALUES (@solde, @client);";
+            command = new SqlCommand(request, connection);
+            command.Parameters.Add(new SqlParameter("@solde", solde));
+            command.Parameters.Add(new SqlParameter("@client", client));
+            connection.Open();
+            id = (int)command.ExecuteScalar();
+            command.Dispose();
+            connection.Close();
+            return id > 0;
         }
 
 

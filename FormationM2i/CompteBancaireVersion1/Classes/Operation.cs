@@ -9,6 +9,7 @@ namespace CompteBancaireVersion1.Classes
 {
     internal class Operation
     {
+        private int id;
         private decimal montant;
         private DateTime dateEtheureOperation;
         public static string request;
@@ -57,6 +58,21 @@ namespace CompteBancaireVersion1.Classes
             connection.Close();
 
             return operations;
+        }
+
+        public bool Save()
+        {
+
+            connection = DB.Connection;
+            request = "INSERT INTO operations (montant, date_operation) OUTPUT INSERTED.ID VALUES (@montant, @date);";
+            command = new SqlCommand(request, connection);
+            command.Parameters.Add(new SqlParameter("@montant", montant));
+            command.Parameters.Add(new SqlParameter("@date", dateEtheureOperation));
+            connection.Open();
+            id = (int)command.ExecuteScalar();
+            command.Dispose();
+            connection.Close();
+            return id > 0;
         }
     }
 }
