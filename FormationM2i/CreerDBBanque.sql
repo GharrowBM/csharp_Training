@@ -1,4 +1,8 @@
-﻿CREATE TABLE clients
+﻿DROP TABLE clients;
+DROP TABLE comptes;
+DROP TABLE operations;
+
+CREATE TABLE clients
 (
 	id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	nom VARCHAR(150),
@@ -20,3 +24,6 @@ CREATE TABLE comptes
 	solde DECIMAL,
 	client_id INT
 )
+
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'comptes';
+SELECT * FROM clients WHERE id = 1;

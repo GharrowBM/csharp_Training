@@ -77,6 +77,7 @@ namespace CompteBancaireVersion1.Classes
                 Console.WriteLine("3- Compte Epargne");
                 string choix = Console.ReadLine();
                 Compte compte = banque.CreationCompte(client, solde, choix);
+                compte.Save();
                 if(compte != default(Compte))
                 {
                     compte.ADecouvert += NotificationCompteADecouvert;
@@ -103,6 +104,7 @@ namespace CompteBancaireVersion1.Classes
                 Console.Write("Merci de saisir le montant du depot : ");
                 decimal montant = Convert.ToDecimal(Console.ReadLine());    
                 Operation operation = new Operation(montant);
+                operation.Save(compte);
                 if(compte.Depot(operation))
                 {
                     Console.WriteLine($"Dépôt effecuté, nouveau solde est de {compte.Solde}");
@@ -122,6 +124,7 @@ namespace CompteBancaireVersion1.Classes
                 Console.Write("Merci de saisir le montant du retrait : ");
                 decimal montant = Convert.ToDecimal(Console.ReadLine());
                 Operation operation = new Operation(montant*-1);
+                operation.Save(compte);
                 if (compte.Retrait(operation))
                 {
                     Console.WriteLine($"Retrait effecuté, nouveau solde est de {compte.Solde}");

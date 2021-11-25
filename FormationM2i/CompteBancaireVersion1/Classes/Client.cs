@@ -39,13 +39,13 @@ namespace CompteBancaireVersion1.Classes
             return $"Client : {Nom} {Prenom}, Tel : {Telephone}";
         }
 
-        public static Client GetClientFromAccount(Compte compte)
+        public static Client GetClientFromAccountID(int id)
         {
-            Client client= default(Client);
+            Client client = default(Client);
             connection = DB.Connection;
-            request = "SELECT * FROM client WHERE compte_id = @compte;";
+            request = "SELECT * FROM clients WHERE id = @id;";
             command = new SqlCommand(request, connection);
-            command.Parameters.Add(new SqlParameter("@compte", compte.Id));
+            command.Parameters.Add(new SqlParameter("@id", id));
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
             if (reader.Read())
@@ -63,6 +63,25 @@ namespace CompteBancaireVersion1.Classes
             connection.Close();
 
             return client;
+        }
+
+        public static bool ClientExist(string telephone)
+        {
+            bool exist = false;
+            request = "SELECT count(*) from clients where telephone=@telephone";
+            connection = DB.Connection;
+            command = new SqlCommand(request, connection);
+            command.Parameters.Add(new SqlParameter("@telephone", telephone));
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                exist = reader.GetInt32(0) > 0;
+            }
+            reader.Close();
+            command.Dispose();
+            connection.Close();
+            return exist;
         }
 
         public bool Save()

@@ -35,13 +35,13 @@ namespace CompteBancaireVersion1.Classes
             return $"Montant : {Montant}, Date de l'opération : {DateEtheureOperation}";
         }
 
-        public static List<Operation> GetAllOperationsFromAccount(Compte compte)
+        public static List<Operation> GetAllOperationsFromAccountID(int id)
         {
-            List<Operation> operations = default(List<Operation>);
+            List<Operation> operations = new List<Operation>();
             connection = DB.Connection;
             request = "SELECT * FROM operations WHERE compte_id = @compte;";
             command = new SqlCommand(request, connection);
-            command.Parameters.Add(new SqlParameter("@compte", compte.Id));
+            command.Parameters.Add(new SqlParameter("@compte", id));
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -51,7 +51,7 @@ namespace CompteBancaireVersion1.Classes
                     montant = reader.GetDecimal(1),
                     dateEtheureOperation = reader.GetDateTime(2)
                 };
-                operation.Add(operation);
+                operations.Add(operation);
             }
             reader.Close();
             command.Dispose();
@@ -60,14 +60,15 @@ namespace CompteBancaireVersion1.Classes
             return operations;
         }
 
-        public bool Save()
+        public bool Save(Compte compte)
         {
 
             connection = DB.Connection;
-            request = "INSERT INTO operations (montant, date_operation) OUTPUT INSERTED.ID VALUES (@montant, @date);";
+            request = "INSERT INTO operations (montant, date_operation, compte_id) OUTPUT INSERTED.ID VALUES (@montant, @date, @compte);";
             command = new SqlCommand(request, connection);
             command.Parameters.Add(new SqlParameter("@montant", montant));
             command.Parameters.Add(new SqlParameter("@date", dateEtheureOperation));
+            command.Parameters.Add(new SqlParameter("@compte", compte.Id));
             connection.Open();
             id = (int)command.ExecuteScalar();
             command.Dispose();

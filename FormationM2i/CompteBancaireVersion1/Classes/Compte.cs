@@ -19,7 +19,7 @@ namespace CompteBancaireVersion1.Classes
         public int Id { get => id; }
         public decimal Solde { get => solde; }
         public Client Client { get => client; set => client = value; }
-        public List<Operation> Operations { get => operations; }
+        public List<Operation> Operations { get => operations; set => operations = value; }
 
         public event Action<int, decimal> ADecouvert;
         public Compte()
@@ -29,26 +29,34 @@ namespace CompteBancaireVersion1.Classes
 
         public virtual bool Depot(Operation operation)
         {
-            if(operation.Montant >= 0)
+            if (operation.Montant >= 0)
             {
-                operations.Add(operation);
-                solde += operation.Montant;
-                return true;
+                //operations.Add(operation);
+                if (operation.Save(this))
+                {
+                    solde += operation.Montant;
+
+                    return Update();
+                }
+                return false;
             }
             return false;
         }
 
         public virtual bool Retrait(Operation operation)
         {
-            operations.Add(operation);
-            solde += operation.Montant;
-            if (solde < 0)
+            if (operation.Save(this))
             {
-                if (ADecouvert != null)
-                    ADecouvert(id, Solde);
-            }    
-            return true;
-            
+                solde += operation.Montant;
+                if (solde < 0)
+                {
+                    if (ADecouvert != null)
+                        ADecouvert(id, Solde);
+                }
+                return Update();
+            }
+            return false;
+
 
         }
 
@@ -67,9 +75,9 @@ namespace CompteBancaireVersion1.Classes
                 {
                     id = reader.GetInt32(0),
                     solde = reader.GetDecimal(1)
-                    client = Client.GetClientFromAccount(compte),
-                    operations = Operation.GetAllOperationsFromAccount(compte)
                 };
+                compte.Client = Client.GetClientFromAccountID(compte.Id);
+                compte.Operations = Operation.GetAllOperationsFromAccountID(compte.Id);
             }
             reader.Close();
             command.Dispose();
@@ -80,7 +88,7 @@ namespace CompteBancaireVersion1.Classes
 
         public static List<Compte> GetAllAccounts()
         {
-            List<Compte> comptes = default(List<Compte>);
+            List<Compte> comptes = new List<Compte>();
             connection = DB.Connection;
             request = "SELECT * FROM comptes;";
             command = new SqlCommand(request, connection);
@@ -93,8 +101,8 @@ namespace CompteBancaireVersion1.Classes
                     id = reader.GetInt32(0),
                     solde = reader.GetDecimal(1)
                 };
-                compte.client = Client.GetClientFromAccount(compte);
-                compte.operations = Operation.GetAllOperationsFromAccount(compte);
+                compte.client = Client.GetClientFromAccountID(compte.Id);
+                compte.operations = Operation.GetAllOperationsFromAccountID(compte.Id);
 
                 comptes.Add(compte);
             }
@@ -118,6 +126,20 @@ namespace CompteBancaireVersion1.Classes
             command.Dispose();
             connection.Close();
             return id > 0;
+        }
+
+        public bool Update()
+        {
+            request = "UPDATE comptes set solde=@solde where id=@id";
+            connection = DB.Connection;
+            command = new SqlCommand(request, connection);
+            command.Parameters.Add(new SqlParameter("@solde", Solde));
+            command.Parameters.Add(new SqlParameter("@id", Id));
+            connection.Open();
+            int nbRow = command.ExecuteNonQuery();
+            command.Dispose();
+            connection.Close();
+            return nbRow == 1;
         }
 
 
