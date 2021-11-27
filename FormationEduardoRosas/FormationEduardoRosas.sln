@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstWPF", "FirstWPF\FirstWPF.csproj", "{A8510B47-B03B-45E6-B2EE-DF35E2EE7592}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{17EE6D73-6537-4AC7-A63F-5959A5A5FF11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator", "Calculator\Calculator.csproj", "{17EE6D73-6537-4AC7-A63F-5959A5A5FF11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopContactsApp", "DesktopContactsApp\DesktopContactsApp.csproj", "{7F04D7CF-BE4F-439B-A004-3FF10A9C936F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{17EE6D73-6537-4AC7-A63F-5959A5A5FF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17EE6D73-6537-4AC7-A63F-5959A5A5FF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17EE6D73-6537-4AC7-A63F-5959A5A5FF11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F04D7CF-BE4F-439B-A004-3FF10A9C936F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F04D7CF-BE4F-439B-A004-3FF10A9C936F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F04D7CF-BE4F-439B-A004-3FF10A9C936F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F04D7CF-BE4F-439B-A004-3FF10A9C936F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
