@@ -49,19 +49,16 @@ namespace FoodAI
 
         private async void MakePredictionAsync(string fileName)
         {
-            string url = "Your URL Here";
-            string predictionKey = "Your Key Here";
-            string contentType = "Your Content Type Here";
             byte[] file = File.ReadAllBytes(fileName);
 
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("Prediction-Key", predictionKey);
+                client.DefaultRequestHeaders.Add("Prediction-Key", Secrets.predictionKey);
                 
                 using (ByteArrayContent content = new ByteArrayContent(file))
                 {
-                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(contentType);
-                    HttpResponseMessage response = await client.PostAsync(url, content);
+                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(Secrets.contentType);
+                    HttpResponseMessage response = await client.PostAsync(Secrets.url, content);
 
                     string responseString = await response.Content.ReadAsStringAsync();
 
