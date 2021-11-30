@@ -31,6 +31,7 @@ namespace Calculator
 
         private void acButton_Click(object sender, RoutedEventArgs e)
         {
+
             resultLabel.Content = "0";
         }
 

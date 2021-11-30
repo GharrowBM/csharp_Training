@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator", "Calculator\Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopContactsApp", "DesktopContactsApp\DesktopContactsApp.csproj", "{7F04D7CF-BE4F-439B-A004-3FF10A9C936F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodAI", "FoodAI\FoodAI.csproj", "{3F7E3C80-894A-48C0-A9C5-197881F4DD80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodAI", "FoodAI\FoodAI.csproj", "{3F7E3C80-894A-48C0-A9C5-197881F4DD80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp", "WeatherApp\WeatherApp.csproj", "{C41E09DA-7476-4D26-83EE-90FFC7AC3FC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3F7E3C80-894A-48C0-A9C5-197881F4DD80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F7E3C80-894A-48C0-A9C5-197881F4DD80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F7E3C80-894A-48C0-A9C5-197881F4DD80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C41E09DA-7476-4D26-83EE-90FFC7AC3FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C41E09DA-7476-4D26-83EE-90FFC7AC3FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C41E09DA-7476-4D26-83EE-90FFC7AC3FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C41E09DA-7476-4D26-83EE-90FFC7AC3FC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
