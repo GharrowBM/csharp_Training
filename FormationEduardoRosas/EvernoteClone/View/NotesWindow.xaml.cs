@@ -42,6 +42,18 @@ namespace EvernoteClone.View
 
         }
 
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+
+            if (string.IsNullOrEmpty(App.UserId))
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+                vm.GetNotebooks();
+            }
+        }
+
         private void Vm_SelectedNoteChanged(object? sender, EventArgs e)
         {
             contentRichTextBox.Document.Blocks.Clear();
