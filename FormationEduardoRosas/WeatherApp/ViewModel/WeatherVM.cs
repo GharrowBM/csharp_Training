@@ -56,27 +56,6 @@ namespace WeatherApp.ViewModel
         public event EventHandler? CanExecuteChanged;
         public WeatherVM()
         {
-            if (DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
-            {
-                SelectedCity = new City()
-                {
-                    LocalizedName = "New York",
-                    Key = "358"
-                };
-
-                CurrentConditions = new CurrentConditions()
-                {
-                    WeatherText = "Partly cloudly",
-                    Temperature = new Temperature()
-                    {
-                        Metric = new Units()
-                        {
-                            Value = "12"
-                        }
-                    }
-                };
-            }
-
             SearchCommand = new SearchCommand(this);
 
             Cities = new ObservableCollection<City>();
@@ -103,8 +82,8 @@ namespace WeatherApp.ViewModel
         {
             Query = string.Empty;
             Cities.Clear();
-
             CurrentConditions = await AccuWeatherHelper.GetCurrentConditions(SelectedCity.Key);
+
         }
     }
 }
