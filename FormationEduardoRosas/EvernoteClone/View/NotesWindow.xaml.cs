@@ -1,8 +1,10 @@
-﻿using EvernoteClone.ViewModel.Helpers;
+﻿using EvernoteClone.ViewModel;
+using EvernoteClone.ViewModel.Helpers;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +25,14 @@ namespace EvernoteClone.View
     /// </summary>
     public partial class NotesWindow : Window
     {
+        NotesVM vm;
+
         public NotesWindow()
         {
             InitializeComponent();
+
+            vm = Resources["vm"] as NotesVM;
+            vm.SelectedNoteChanged += Vm_SelectedNoteChanged; 
 
             var fontFamilies = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             fontFamilyComboBox.ItemsSource = fontFamilies;
@@ -33,6 +40,22 @@ namespace EvernoteClone.View
             List<double> fontSizes = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 28, 48, 72};
             fontSizeComboBox.ItemsSource = fontSizes;
 
+        }
+
+        private void Vm_SelectedNoteChanged(object? sender, EventArgs e)
+        {
+            contentRichTextBox.Document.Blocks.Clear();
+
+            if (vm.SelectedNote != null)
+            {
+                if (!string.IsNullOrEmpty(vm.SelectedNote.FileLocation))
+                {
+                    FileStream fs = new FileStream(vm.SelectedNote.FileLocation, FileMode.Open);
+                    var contents = new TextRange(contentRichTextBox.Document.ContentStart, contentRichTextBox.Document.ContentEnd);
+                    contents.Load(fs, DataFormats.Rtf);
+                }
+            }
+            
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -132,6 +155,18 @@ namespace EvernoteClone.View
         private void fontSizeComboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontSizeProperty, fontSizeComboBox.Text);
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            string rtfFile = System.IO.Path.Combine(Environment.CurrentDirectory, $"{vm.SelectedNote.Id}.rtf");
+            vm.SelectedNote.FileLocation = rtfFile;
+            DatabaseHelper.Update(vm.SelectedNote);
+
+            FileStream fs = new FileStream(rtfFile, FileMode.Create);
+
+            var contents = new TextRange(contentRichTextBox.Document.ContentStart, contentRichTextBox.Document.ContentEnd);
+            contents.Save(fs, DataFormats.Rtf);
         }
     }
 }
