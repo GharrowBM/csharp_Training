@@ -78,7 +78,7 @@ namespace EvernoteClone.View
         private async void SpeechButton_Click(object sender, RoutedEventArgs e)
         {
             string region = "francecentral";
-            string key = APIKeyLocal.Key;
+            string key = MSSpeechAuthHelper.Key;
 
             var speechConfig = SpeechConfig.FromSubscription(key, region);
             var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
@@ -169,11 +169,11 @@ namespace EvernoteClone.View
             contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontSizeProperty, fontSizeComboBox.Text);
         }
 
-        private void saveButton_Click(object sender, RoutedEventArgs e)
+        private async void saveButton_Click(object sender, RoutedEventArgs e)
         {
             string rtfFile = System.IO.Path.Combine(Environment.CurrentDirectory, $"{vm.SelectedNote.Id}.rtf");
             vm.SelectedNote.FileLocation = rtfFile;
-            DatabaseHelper.Update(vm.SelectedNote);
+            await DatabaseHelper.Update(vm.SelectedNote);
 
             FileStream fs = new FileStream(rtfFile, FileMode.Create);
 

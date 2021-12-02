@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EvernoteClone.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,12 @@ using System.Windows.Input;
 
 namespace EvernoteClone.ViewModel.Commands
 {
-    public class EditCommand : ICommand
+    public class DeleteCommand : ICommand
     {
         public NotesVM VM { get; set; }
         public event EventHandler? CanExecuteChanged;
 
-
-        public EditCommand(NotesVM vm)
+        public DeleteCommand(NotesVM vm)
         {
             VM = vm;
         }
@@ -25,7 +25,10 @@ namespace EvernoteClone.ViewModel.Commands
 
         public void Execute(object? parameter)
         {
-            VM.StartEditing();
+            Notebook notebook = parameter as Notebook;
+            
+            VM.Delete(notebook);
+
         }
     }
 }

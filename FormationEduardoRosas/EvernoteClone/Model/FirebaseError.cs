@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvernoteClone.ViewModel.Helpers
+namespace EvernoteClone.Model
 {
-    public class APIKeyPublic
+    public class FirebaseError
     {
-        public static string Key = "Your key here";
+        public FirebaseErrorDetails Error { get; set; }
     }
 }
