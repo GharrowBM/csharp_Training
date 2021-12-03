@@ -1,4 +1,5 @@
-﻿using EvernoteClone.ViewModel;
+﻿using Azure.Storage.Blobs;
+using EvernoteClone.ViewModel;
 using EvernoteClone.ViewModel.Helpers;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
@@ -32,12 +33,12 @@ namespace EvernoteClone.View
             InitializeComponent();
 
             vm = Resources["vm"] as NotesVM;
-            vm.SelectedNoteChanged += Vm_SelectedNoteChanged; 
+            vm.SelectedNoteChanged += Vm_SelectedNoteChanged;
 
             var fontFamilies = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             fontFamilyComboBox.ItemsSource = fontFamilies;
 
-            List<double> fontSizes = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 28, 48, 72};
+            List<double> fontSizes = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 28, 48, 72 };
             fontSizeComboBox.ItemsSource = fontSizes;
 
         }
@@ -54,7 +55,7 @@ namespace EvernoteClone.View
             }
         }
 
-        private void Vm_SelectedNoteChanged(object? sender, EventArgs e)
+        private async void Vm_SelectedNoteChanged(object? sender, EventArgs e)
         {
             contentRichTextBox.Document.Blocks.Clear();
 
@@ -62,12 +63,17 @@ namespace EvernoteClone.View
             {
                 if (!string.IsNullOrEmpty(vm.SelectedNote.FileLocation))
                 {
-                    FileStream fs = new FileStream(vm.SelectedNote.FileLocation, FileMode.Open);
-                    var contents = new TextRange(contentRichTextBox.Document.ContentStart, contentRichTextBox.Document.ContentEnd);
-                    contents.Load(fs, DataFormats.Rtf);
+                    string downloadPath = $"{vm.SelectedNote.Id}.rtf";
+                    await new BlobClient(new Uri(vm.SelectedNote.FileLocation)).DownloadToAsync(downloadPath);
+
+                    using (FileStream fs = new FileStream(downloadPath, FileMode.Open))
+                    {
+                        var contents = new TextRange(contentRichTextBox.Document.ContentStart, contentRichTextBox.Document.ContentEnd);
+                        contents.Load(fs, DataFormats.Rtf);
+                    }
                 }
             }
-            
+
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -171,14 +177,33 @@ namespace EvernoteClone.View
 
         private async void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            string rtfFile = System.IO.Path.Combine(Environment.CurrentDirectory, $"{vm.SelectedNote.Id}.rtf");
-            vm.SelectedNote.FileLocation = rtfFile;
+            string fileName = $"{vm.SelectedNote.Id}.rtf";
+            string rtfFile = System.IO.Path.Combine(Environment.CurrentDirectory, fileName);
+
+            using (FileStream fs = new FileStream(rtfFile, FileMode.Create))
+            {
+                var contents = new TextRange(contentRichTextBox.Document.ContentStart, contentRichTextBox.Document.ContentEnd);
+                contents.Save(fs, DataFormats.Rtf);
+
+            }
+
+
+            vm.SelectedNote.FileLocation = await UpdateFile(rtfFile, fileName);
             await DatabaseHelper.Update(vm.SelectedNote);
+        }
 
-            FileStream fs = new FileStream(rtfFile, FileMode.Create);
+        private async Task<string> UpdateFile(string rtfFilePath, string fileName)
+        {
+            string connectionString = MSContainerAuthHelper.ConnectionString;
+            string containerName = "notes";
 
-            var contents = new TextRange(contentRichTextBox.Document.ContentStart, contentRichTextBox.Document.ContentEnd);
-            contents.Save(fs, DataFormats.Rtf);
+            var container = new BlobContainerClient(connectionString, containerName);
+            await container.CreateIfNotExistsAsync();
+
+            var blob = container.GetBlobClient(fileName);
+            await blob.UploadAsync(rtfFilePath, true);
+
+            return $"https://gharrowevernotestorage.blob.core.windows.net/notes/{fileName}";
         }
     }
 }
