@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace EFNet5.Domain
 {
-    public class League
+    public class League : BaseDomainObject
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public List<Team> Teams { get; set; }
     }

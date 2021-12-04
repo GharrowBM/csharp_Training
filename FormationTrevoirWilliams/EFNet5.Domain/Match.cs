@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace EFNet5.Domain
 {
-    public class Match
+    public class Match : BaseDomainObject
     {
-        public int Id { get; set; }
         public int HomeTeamId { get; set; }
         public virtual Team HomeTeam { get; set; }
         public int AwayTeamId { get; set; }
