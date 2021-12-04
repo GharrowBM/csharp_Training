@@ -312,6 +312,53 @@ namespace EFNet5.ConsoleApp
 
             #endregion
 
+            #region Requêtes sur Vues 
+
+            //var details = await context.TeamsCoachesLeagues.ToListAsync();
+
+            #endregion
+
+            #region Requêtes SQL brutes 
+
+            //// Il faut aussi faire attention à ce que les proriétés de l'entité soient toutes alimentées par la requête, ainsi, cette requête ne fonctionne pas : 
+            //var team1 = await context.Teams.FromSqlRaw("SELECT Id, Name FROM Teams").ToListAsync();
+
+            //// On peut cependant aussi ajouter les méthodes du genre d'Include(), tel que : 
+            //var team2 = await context.Teams.FromSqlRaw("SELECT * FROM Teams")
+            //    .Include(t => t.Coach).ToListAsync();
+
+
+            //// Il y a des dangers avec le SQL brut dans les injections SQL si l'on est pas prudent. Attention donc à ce genre de choses : 
+            //Console.Write("Quel nom: ");
+            //string name = Console.ReadLine();
+            //var team3 = await context.Teams.FromSqlRaw($"SELECT * FROM Teams WHERE Name = '{name}'").ToListAsync();
+
+            //// Pour éviter les injection, il est donc recommandé d'utiliser la méthode .FromSqlInterpolated()
+            //var team4 = await context.Teams.FromSqlInterpolated($"SELECT * FROM Teams WHERE Name = '{name}'").ToListAsync();
+
+            #endregion
+
+            #region Les Procédures stockées 
+
+            //// 1. Celles qui renvoient des données 
+
+            //var teamId = 3;
+            //// Ici, on se sert de la surchage de SQLRaw(), qui permet l'utilisation de paramètres pour éviter l'injection
+            //var result = await context.Coaches.FromSqlRaw("EXEC dbo.sp_GetTeamCoach {0}", teamId).ToListAsync();
+
+            //// 2. Les procédures ne renvoyant pas de données
+
+            //// En utilisant la surcharge de RawSql()
+            //var teamId1 = 2;
+            //var affectedRows1 = await context.Database.ExecuteSqlRawAsync("EXEC sp_DeleteTeamById {0}", teamId);
+
+            //// En utilisant InterpolatedSql()
+            //var teamId2 = 5;
+            //var affectedRows2 = await context.Database.ExecuteSqlInterpolatedAsync($"EXEC sp_DeleteTeamById {teamId}");
+
+            #endregion
+
+            Console.WriteLine("Press any key to end...");
             Console.ReadKey();
         }
     }
