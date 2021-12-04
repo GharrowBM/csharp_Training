@@ -216,7 +216,110 @@ namespace EFNet5.ConsoleApp
 
             #endregion
 
+            #region Ajout de données avec relations
+
+            //// One-to-Many
+
+            //var league = new League { Name = "Bundesliga" };
+
+            //// 1. Ajout avec l'objet
+            //var team = new Team { Name = "Bayern Munich", League = league };
+            //await context.AddAsync(team);
+
+            //// 2. Ajout avec l'ID (Si par exemple on est dans une Application ayant une liste déroulante
+            //var team2 = new Team { Name = "Fiorentina", LeagueId = 1 };
+            //await context.AddAsync(team2);
+
+            //// 3. Ajout à partir de la League d'une liste d'équipe
+            //var teams = new List<Team>
+            //{
+            //    new Team { Name ="Rivoli United"},
+            //    new Team { Name = "Waterhouse FC"}
+            //};
+
+            //var league2 = new League { Name = "CIFA", Teams = teams };
+            //await context.AddAsync(league2);
+
+            //// Many-to-Many
+
+            //var matches = new List<Match>
+            //{
+            //    new Match { AwayTeam = team, HomeTeam = team2, Date = DateTime.Now },
+            //    new Match { AwayTeam = team2, HomeTeam = team, Date = DateTime.Now }
+            //};
+            //await context.AddRangeAsync(matches);
+
+            //// One-to-One 
+
+            //var coach = new Coach { Name = "Jose Mourihno", Team = team };
+            //await context.AddAsync(coach);
+            //var coach2 = new Coach { Name = "Antonio Conte"};
+            //await context.AddAsync(coach2);
+
+
+            //await context.SaveChangesAsync();
+
+            #endregion
+
+            #region Récupérer des données séparées dans plusieurs tables
+
+            //// 1. Récupérer plusieurs données Leagues -> Teams
+            //var leagues = await context.Leagues
+            //    .Include(l => l.Teams)
+            //    .ToListAsync();
+
+            //// 2. Récupérer une donnée Team -> Coach
+            //var team = await context.Teams
+            //    .Include(t => t.Coach)
+            //    .FirstOrDefaultAsync();
+
+            //// 3. Récupérer une donnée avec plusieurs données Team -> Marches -> Home/Away Team
+            //var teamWithMatchesAndOpponents = await context.Teams
+            //    .Include(m => m.AwayMatches).ThenInclude(t => t.HomeTeam).ThenInclude(t => t.Coach)
+            //    .Include(m => m.HomeMatches).ThenInclude(t => t.AwayTeam)
+            //    .FirstOrDefaultAsync(t => t.Id == 11);
+
+            //// 5. Récupérer les données d'un filtre
+            //var teams = await context.Teams
+            //    .Where(t => t.HomeMatches.Count > 0)
+            //    .Include(t => t.Coach)
+            //    .ToArrayAsync();
+
+            #endregion
+
+            #region Projection et Types Anonymes 
+
+            //// 1. Selectionner une Propriété unique
+            //var listOfTeamNames = await context.Teams.Select(t => t.Name).ToListAsync();
+
+
+            //// 2. Selectionner plusieurs propriétés
+
+            //// a. Projection Anonyme dans un object anonyme créé sur le moment
+            //var listContainingTeamNamesAndCoachNames = await context.Teams.Include(t => t.Coach).Select(t => new { TeamName = t.Name, CoachName = t.Coach.Name }).ToListAsync();
+            //foreach (var item in listContainingTeamNamesAndCoachNames) Console.WriteLine($"Team: {item.TeamName} | Coach: {item.CoachName}");
+
+            //// b. Projection fortement typée dans une classe créée préalablement
+            //var listContainingTeamNamesAndCoachNamesWithStrongType = await context.Teams.Include(t => t.Coach).Include(t => t.League).Select(t => new TeamDetail { Name = t.Name, CoachName = t.Coach.Name, LeagueName = t.League.Name}).ToListAsync();
+            //foreach (var item in listContainingTeamNamesAndCoachNamesWithStrongType) Console.WriteLine($"Team: {item.Name} | Coach: {item.CoachName} | League: {item.LeagueName}");
+
+            #endregion
+
+            #region Filter en se basant sur les données 
+
+            //// On cherche à récupérer les leagues à partir de ce que les teams peuvent avoir (Ici les leagues dont les teams ont dans leur nom "Bay") 
+            //var leagues = await context.Leagues.Where(l => l.Teams.Any(t => t.Name.Contains("Bay"))).ToListAsync();
+
+            #endregion
+
             Console.ReadKey();
         }
     }
+
+    //internal class TeamDetail
+    //{
+    //    public string Name { get; set; }
+    //    public string CoachName { get; set;}
+    //    public string LeagueName { get; set;}
+    //}
 }

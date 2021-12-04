@@ -38,8 +38,13 @@ namespace EFNet5.Data
         }
 
         public DbSet<Team> Teams { get; set; }
+
+        // One to Many Relationship 
         public DbSet<League> Leagues { get; set; }
+        // Many to Many RelationShips
         public DbSet<Match> Matches { get; set; }
+        // One to One Relationship
+        public DbSet<Coach> Coaches { get; set; }
 
     }
 }
