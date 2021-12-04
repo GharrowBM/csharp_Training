@@ -17,8 +17,29 @@ namespace EFNet5.Data
                 .EnableSensitiveDataLogging();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Définition des règles pour le Many-to-Many car on utilise une autre convention de nommage que celle prévue par EF Core
+            // HomeTeam et AwayTeam
+
+            modelBuilder.Entity<Team>()
+                .HasMany(m => m.HomeMatches)
+                .WithOne(m => m.HomeTeam)
+                .HasForeignKey(m => m.HomeTeamId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Team>()
+                .HasMany(m => m.AwayMatches)
+                .WithOne(m => m.AwayTeam)
+                .HasForeignKey(m => m.AwayTeamId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+
         public DbSet<Team> Teams { get; set; }
         public DbSet<League> Leagues { get; set; }
+        public DbSet<Match> Matches { get; set; }
 
     }
 }
