@@ -13,6 +13,9 @@ namespace EFNet5.Data.Configurations.Entities
     {
         public void Configure(EntityTypeBuilder<League> builder)
         {
+            builder.Property(m => m.Name).HasMaxLength(50);
+            builder.HasIndex(m => m.Name);
+
             builder.HasData(new League
             {
                 Id = 21,

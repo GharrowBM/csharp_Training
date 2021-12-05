@@ -13,6 +13,9 @@ namespace EFNet5.Data.Configurations.Entities
     {
         public void Configure(EntityTypeBuilder<Team> builder)
         {
+            builder.Property(m => m.Name).HasMaxLength(50);
+            builder.HasIndex(m => m.Name).IsUnique();
+
             builder.HasData(new Team()
              {
                  Id = 20,
@@ -27,6 +30,7 @@ namespace EFNet5.Data.Configurations.Entities
                     LeagueId= 21
                     
                 });
+
         }
     }
 }

@@ -13,6 +13,11 @@ namespace EFNet5.Data.Configurations.Entities
     {
         public void Configure(EntityTypeBuilder<Coach> builder)
         {
+            // Il est possible de mettre ici des Data Annotations pour rendre le DbContext plus propre
+
+            builder.Property(m => m.Name).HasMaxLength(50);
+            builder.HasIndex(m => new { m.Name, m.TeamId }).IsUnique();
+
             builder.HasData(new Team()
                 {
                     Id = 20,
@@ -26,6 +31,8 @@ namespace EFNet5.Data.Configurations.Entities
                     Name = "Doggo's Fangs",
                     LeagueId = 21
                 });
+
+
         }
     }
 }
