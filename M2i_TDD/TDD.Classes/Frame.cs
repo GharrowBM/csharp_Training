@@ -12,12 +12,25 @@ namespace TDD.Classes
         private int score;
         private List<Roll> rolls;
 
-        public int Score { get { return score; }  }
+        public int Score { get { return score; } }
         public List<Roll> Rolls { get => rolls; }
 
-        public void Roll(IIntGenerator generator)
+        public Frame()
         {
-            throw new NotImplementedException();
+            rolls = new List<Roll>();
+        }
+
+        public bool Roll()
+        {
+            if (score < 10 && rolls.Count < 3)
+            {
+                rolls.Add(new Roll() { Pins = new Random().Next(0, 11 - score) });
+                score = 0;
+                foreach (Roll roll in rolls) score += roll.Pins;
+                return true;
+            }
+
+            return false;
         }
     }
 }

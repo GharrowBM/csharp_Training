@@ -18,19 +18,13 @@ namespace EFNet5.Data.Configurations.Entities
             builder.Property(m => m.Name).HasMaxLength(50);
             builder.HasIndex(m => new { m.Name, m.TeamId }).IsUnique();
 
-            builder.HasData(new Team()
-                {
-                    Id = 20,
-                    Name = "Columbus Bears",
-                    LeagueId = 22
+            builder.HasData(new Coach()
+            {
+                Id = 25,
+                Name = "Coach Griffer",
+                TeamId = 20,
 
-                },
-                new Team
-                {
-                    Id = 21,
-                    Name = "Doggo's Fangs",
-                    LeagueId = 21
-                });
+            });
 
 
         }

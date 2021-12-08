@@ -8,6 +8,6 @@ namespace TDD.Classes.Interfaces
 {
     public interface IIntGenerator
     {
-        public int Generate();
+        public int GenerateBetween(int min, int max);
     }
 }
