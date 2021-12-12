@@ -12,5 +12,15 @@ namespace Caisse.Classes
         public string Name { get; set; }
 
         public virtual List<Product> Products { get; set; }
+
+        public Category()
+        {
+            Products = new List<Product>();
+        }
+
+        public override string ToString()
+        {
+            return $"{Id}. {Name.Substring(0,1).ToUpper()+Name.Substring(1,Name.Length-1).ToLower()}";
+        }
     }
 }

@@ -7,15 +7,15 @@ using System.Windows.Input;
 
 namespace Caisse.WPFApp.ViewModels.Commands
 {
-    public class NewSaleCommand : ICommand
+    public class ViewProductsCommand : ICommand
     {
-        private SalesViewModel _vm;
+        private SalesViewModel _salesViewModel;
 
         public event EventHandler? CanExecuteChanged;
 
-        public NewSaleCommand(SalesViewModel vm)
+        public ViewProductsCommand(SalesViewModel vm)
         {
-            _vm = vm;
+            _salesViewModel = vm;
         }
 
         public bool CanExecute(object? parameter)
@@ -25,7 +25,7 @@ namespace Caisse.WPFApp.ViewModels.Commands
 
         public void Execute(object? parameter)
         {
-            _vm.NewSale();
+            _salesViewModel.ShowProducts();
         }
     }
 }

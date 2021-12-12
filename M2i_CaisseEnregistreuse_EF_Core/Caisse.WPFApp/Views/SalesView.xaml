@@ -25,13 +25,13 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
-                <Button Margin="5" Content="New Sale"/>
-                <Button Margin="5" Content="Pay Sale"/>
-                <Button Margin="5" Content="Cancel Sale"/>
+                <Button Margin="5" Content="New Sale" x:Name="newSaleButton" Command="{Binding NewSaleCommand}"/>
+                <Button Margin="5" Content="Pay Sale" x:Name="paySaleButton"/>
+                <Button Margin="5" Content="Cancel Sale" x:Name="cancelSaleButton"/>
                 <Label Margin="5" Content="Daily sales:"/>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Button Margin="5" Content="View Products" />
+                <Button Margin="5" Content="View Products" x:Name="viewProductsButton" Command="{Binding ViewProductsCommand}"/>
 
             </StackPanel>
         </Grid>
@@ -45,7 +45,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBox Grid.Row="0" Grid.Column="0" Margin="5" FontSize="15" x:Name="saleFilterTextBox"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" Margin="5"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" Margin="5" x:Name="saleFilterCategoryComboBox"/>
             <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" x:Name="filteredSalesListView">
 
             </ListView>

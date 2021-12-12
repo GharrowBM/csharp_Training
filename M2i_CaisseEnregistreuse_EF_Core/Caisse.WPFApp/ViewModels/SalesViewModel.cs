@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Caisse.WPFApp.ViewModels.Commands;
+using Caisse.WPFApp.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +8,28 @@ using System.Threading.Tasks;
 
 namespace Caisse.WPFApp.ViewModels
 {
-    internal class SalesViewModel
+    public class SalesViewModel
     {
 
-        public bool NewSale()
+        public NewSaleCommand NewSaleCommand { get; set; }
+        public ViewProductsCommand ViewProductsCommand { get; set; }
+
+        public SalesViewModel()
         {
-            return false;
+            NewSaleCommand = new NewSaleCommand(this);
+            ViewProductsCommand = new ViewProductsCommand(this);
+        }
+
+        public void ShowProducts()
+        {
+            ProductsView view = new ProductsView();
+            view.ShowDialog();
+        }
+
+        public void NewSale()
+        {
+            NewSaleView view = new NewSaleView();
+            view.ShowDialog();
         }
     }
 }
