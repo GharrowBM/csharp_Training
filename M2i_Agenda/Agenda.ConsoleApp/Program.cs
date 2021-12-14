@@ -132,8 +132,7 @@ do
                             Console.WriteLine("=== EDIT APPOINTMENT ===");
                             Console.WriteLine("1. Add Client");
                             Console.WriteLine("2. Remove Client");
-                            Console.WriteLine("3. Change Title");
-                            Console.WriteLine("4. Change Date");
+                            Console.WriteLine("3. Change Details");
                             Console.WriteLine("0. Cancel");
 
                             if (int.TryParse(Console.ReadLine(), out appointmentMenuChoice))
@@ -167,8 +166,15 @@ do
                                         }
                                         break;
                                     case 3:
-                                        break;
-                                    case 4:
+                                        Console.Write("New Title: ");
+                                        string appointmentEditTitle = Console.ReadLine();
+                                        if (DateTime.TryParse(Console.ReadLine().Trim(), out DateTime appointmentEditDate))
+                                        {
+                                            appointmentToEdit.Title = appointmentEditTitle;
+                                            appointmentToEdit.Date = appointmentEditDate;
+                                            context.SaveChanges();
+                                            Console.WriteLine("Appointment edited with success!");
+                                        }
                                         break;
                                     default:
                                         Console.WriteLine("Incorrent choice...");
