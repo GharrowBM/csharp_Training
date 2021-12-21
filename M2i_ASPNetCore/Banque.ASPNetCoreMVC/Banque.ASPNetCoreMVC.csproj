@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Banque.Classes\Banque.Classes.csproj" />
+    <ProjectReference Include="..\Banque.Context\Banque.Context.csproj" />
+  </ItemGroup>
+
+</Project>
