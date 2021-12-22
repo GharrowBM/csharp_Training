@@ -1,3 +1,4 @@
+using Banque.ASPNetCoreMVC.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,8 @@ namespace Banque.ASPNetCoreMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<ToolsService>(); 
+            services.AddTransient<CheckService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +75,16 @@ namespace Banque.ASPNetCoreMVC
                     name: "bankIndex",
                     pattern: "bank",
                     defaults: new { controller="Bank", action="Index"});
+
+                endpoints.MapControllerRoute(
+                    name: "checkPass",
+                    pattern: "check/pass/{s}",
+                    defaults: new { controller = "Chuck", action = "CheckPass" });
+
+                endpoints.MapControllerRoute(
+                    name: "getChucked",
+                    pattern: "getchucked/{s}",
+                    defaults: new { controller = "Chuck", action = "Chucked" });
 
                 endpoints.MapControllerRoute(
                     name: "default",
