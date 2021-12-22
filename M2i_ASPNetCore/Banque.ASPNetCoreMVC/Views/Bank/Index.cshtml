@@ -4,17 +4,54 @@
 *@
 @{
 	Layout = "_BankLayout";
-	var account = Model as Account;
+	Account account = Model as Account;
 }
 
-@if (account != null)
+@if (account == null)
 {
-	
+	<div>
+		<form asp-controller="Bank" asp-action="Index">
+			<input type="text" name="accountId" placeholder"Account ID" />
+			<button type="submit">Rechercher</button>
+		</form>
+	</div>
 }
 else
 {
 	<div>
-		<input type="text" placeholder="Account number">
+		<form asp-controller="Bank" asp-action="Index">
+			<input type="text" name="accountId" placeholder"Account ID" />
+			<button type="submit">Rechercher</button>
+		</form>
+	</div>
+
+	<div>
+		<h2>Account N°@account.Id</h2>
+		<div>
+			<span>Owner: @($"{account.Client.Firstname} {account.Client.Lastname}")</span>
+			<span>Name: @account.Name</span>
+			<span>Date of creation: @account.CreatedAt.ToString("d")</span>
+		</div>
+		<h3>Operations</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Date</th>
+					<th>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach(var op in account.Operations)
+				{
+					<tr>
+						<td>@op.Id</td>
+						<td>@op.Date.ToString("d")</td>
+						<td>@op.Amount</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<a asp-controller="Bank" asp-action="NewOperation" asp-route-id="@account.Id">Make new Operation</a>
 	</div>
 }
-

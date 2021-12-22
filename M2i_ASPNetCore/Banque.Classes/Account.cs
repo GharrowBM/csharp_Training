@@ -13,5 +13,10 @@ namespace Banque.Classes
         public DateTime CreatedAt { get; set; }
         public virtual Client Client { get; set; }
         public virtual List<Operation> Operations { get; set; }
+
+        public Account()
+        {
+            Operations = new List<Operation>();
+        }
     }
 }

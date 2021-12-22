@@ -1,0 +1,23 @@
+﻿@using Banque.Classes
+@*
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	Layout = "_BankLayout";
+	var clients = Model as List<Client>;
+}
+
+<div>
+	<form asp-action="SubmitAccount" asp-controller="Bank">
+		<h2>Create new account</h2>
+		<input type="text" placeholder"Account name" name="accountName" />
+		<label>Owner: </label>
+		<select name="accountClientId">
+			@foreach (var client in clients)
+			{
+				<option value="@client.Id">@($"{client.Firstname} {client.Lastname}")</option>
+			}
+		</select>
+		<button type="submit">Create account</button>
+	</form>
+</div>

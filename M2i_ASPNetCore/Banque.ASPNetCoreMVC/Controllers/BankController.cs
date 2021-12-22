@@ -2,24 +2,50 @@
 using Banque.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Banque.ASPNetCoreMVC.Controllers
 {
     public class BankController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string accountId)
         {
+            if (int.TryParse(accountId, out int id))
+            {
+                Account account = BankContext.Instance.Accounts.Include(a=>a.Client).Include(a=>a.Operations).FirstOrDefault(a => a.Id == id);
+                if (account != null)
+                {
+                    return View(account);
+                }
+            }
+
             return View();
         }
 
         public IActionResult NewAccount()
         {
-            return View();
+            List<Client> clients = BankContext.Instance.Clients.Include(c=>c.Accounts).ToList();
+
+            return View(clients);
         }
 
-        public IActionResult SubmitAccount(Account account)
+        public IActionResult SubmitAccount(string accountName, string accountClientId)
         {
+            
+
+            Client accountClient = BankContext.Instance.Clients.FirstOrDefault(c => c.Id == int.Parse(accountClientId));
+
+            Account account = new Account()
+            {
+                Name = accountName,
+                CreatedAt = DateTime.Now,
+                Client = accountClient
+            };
+
+            accountClient.Accounts.Add(account);
+
             BankContext.Instance.Accounts.Add(account);
             BankContext.Instance.SaveChanges();
 
@@ -96,9 +122,32 @@ namespace Banque.ASPNetCoreMVC.Controllers
             return View(account);
         }
 
-        public IActionResult SubmitOperation(int id, Operation operation)
+        public IActionResult SubmitOperation(int accountId, string operationAmount, string operationType)
         {
-            Account account = BankContext.Instance.Accounts.Include(a => a.Client).Include(a => a.Operations).FirstOrDefault(a => a.Id == id);
+
+            Account account = BankContext.Instance.Accounts.Include(a => a.Client).Include(a => a.Operations).FirstOrDefault(a => a.Id == accountId);
+
+            Operation operation;
+
+            if (operationType == "withdrawal")
+            {
+                operation = new Operation()
+                {
+                    Amount = -(decimal.Parse(operationAmount)),
+                    Date = DateTime.Now,
+                    Account = account,
+                };
+            }
+            else
+            {
+                operation = new Operation()
+                {
+                    Amount = (decimal.Parse(operationAmount)),
+                    Date = DateTime.Now,
+                    Account = account,
+                };
+            }
+
             account.Operations.Add(operation);
             BankContext.Instance.SaveChanges();
 

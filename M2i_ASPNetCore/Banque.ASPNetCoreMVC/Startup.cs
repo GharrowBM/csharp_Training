@@ -64,6 +64,11 @@ namespace Banque.ASPNetCoreMVC
                     defaults: new { controller = "Bank", action = "NewClient" });
 
                 endpoints.MapControllerRoute(
+                    name: "bankNewAccount",
+                    pattern: "bank/account/new",
+                    defaults: new { controller = "Bank", action = "NewAccount" });
+
+                endpoints.MapControllerRoute(
                     name: "bankIndex",
                     pattern: "bank",
                     defaults: new { controller="Bank", action="Index"});

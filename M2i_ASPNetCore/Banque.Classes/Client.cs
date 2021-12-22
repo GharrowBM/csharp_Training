@@ -15,5 +15,10 @@ namespace Banque.Classes
         public string Phone { get; set; }
         public virtual List<Account> Accounts { get; set; } 
 
+        public Client()
+        {
+            Accounts = new List<Account>();
+        }
+
     }
 }

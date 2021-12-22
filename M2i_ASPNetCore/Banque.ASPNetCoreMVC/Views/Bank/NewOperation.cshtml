@@ -1,0 +1,19 @@
+﻿@using Banque.Classes
+@*
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	var account = Model as Account;
+}
+
+<h2>New Operation for @account.Name.ToUpper()</h2>
+<form asp-action="SubmitOperation" asp-controller="Bank" asp-route-accountId="@account.Id">
+	<input type="text" placeholder="Amount" name="OperationAmount" />
+	<label>Operation Type: </label>
+	<select name="operationType">
+		<option value="withdrawal">Withdrawal</option>
+		<option value="deposit">Deposit</option>
+	</select>
+
+	<button type="submit">Confirm</button>
+</form>
