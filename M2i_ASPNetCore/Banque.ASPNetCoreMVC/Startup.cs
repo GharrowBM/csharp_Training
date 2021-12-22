@@ -49,6 +49,26 @@ namespace Banque.ASPNetCoreMVC
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "bankEditClient",
+                    pattern: "bank/client/edit/{id}",
+                    defaults: new { controller = "Bank", action = "EditClient" });
+
+                endpoints.MapControllerRoute(
+                    name: "bankRemoveClient",
+                    pattern: "bank/client/remove/{id}",
+                    defaults: new { controller = "Bank", action = "RemoveClient" });
+
+                endpoints.MapControllerRoute(
+                    name: "bankNewClient",
+                    pattern: "bank/client/new",
+                    defaults: new { controller = "Bank", action = "NewClient" });
+
+                endpoints.MapControllerRoute(
+                    name: "bankIndex",
+                    pattern: "bank",
+                    defaults: new { controller="Bank", action="Index"});
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
