@@ -9,4 +9,9 @@
     <ProjectReference Include="..\Contacts.Context\Contacts.Context.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
 </Project>

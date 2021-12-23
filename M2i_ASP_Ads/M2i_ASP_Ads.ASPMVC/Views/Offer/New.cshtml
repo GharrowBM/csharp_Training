@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_AdsLayout";
+}
+
+<form asp-action="SubmitOffer" asp-controller="Offer" enctype="multipart/form-data">
+    <div class="row p-1">
+    <input type="text" name="title" placeholder="Title" />
+    </div>
+        <div class="row p-1">
+    <input type="text" name="price" placeholder="Price" />
+    </div>
+        <div class="row p-1">
+    <input type="text" name="description" placeholder="Description" />
+    </div>
+        <div class="row p-1">
+    <input type="file" multiple name="offerImages" accept="image/jpg, image/jpeg, image/png" />
+    </div>
+    <div class="row mg-1">
+    <button class="btn btn-primary" type="submit">Send</button>
+
+    </div>
+</form>

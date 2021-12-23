@@ -1,13 +1,22 @@
 ﻿using Contacts.Classes;
 using Contacts.Context;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace Contacts.ASPNetCoreMVC.Controllers
 {
     public class ContactController : Controller
     {
+        private IWebHostEnvironment _webHostEnvironment;
+
+        public ContactController(IWebHostEnvironment webHostEnvironment)
+        {
+            _webHostEnvironment = webHostEnvironment;
+        }
 
         public IActionResult GetContactList()
         {
@@ -37,9 +46,14 @@ namespace Contacts.ASPNetCoreMVC.Controllers
             return RedirectToAction("GetContactList");
         }
 
-        public IActionResult SubmitContact(Contact c)
+        public IActionResult SubmitContact(Contact c, IFormFile avatar)
         {
-
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string path = Path.Combine(wwwRootPath, "img", avatar.FileName);
+            using Stream stream = System.IO.File.Create(path);
+            avatar.CopyTo(stream);
+            string basePath = "img/" + avatar.FileName;
+            c.AvatarPath = basePath;
             ContactContext.Instance.Contacts.Add(c);
             ContactContext.Instance.SaveChanges();
 

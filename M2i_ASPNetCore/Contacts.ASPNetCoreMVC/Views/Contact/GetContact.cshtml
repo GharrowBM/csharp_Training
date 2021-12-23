@@ -11,6 +11,12 @@
 
 <h2>Contact n°@contact.Id</h2>
 
+    @if (contact.AvatarPath != null)
+    {
+
+        <img src="~/@contact.AvatarPath" alt="Avatar">
+    }
+
 <form asp-controller="Contact" asp-action="EditContact" asp-route-id="@contact.Id">
 <input type="text" name="lastname" value=@contact?.Lastname placeholder="Nom" />
 <input type="text" name="firstname" value=@contact?.Firstname placeholder="Prénom" />

@@ -7,10 +7,11 @@
 
 <h2>Nouveau Contact</h2>
 
-<form asp-controller="Contact" asp-action="SubmitContact">
+<form asp-controller="Contact" asp-action="SubmitContact" enctype="multipart/form-data">
 <input type="text" name="lastname" placeholder="Nom" />
 <input type="text" name="firstname" placeholder="Prénom" />
 <input type="text" name="email" placeholder="Email" />
 <input type="text" name="phone" placeholder="Téléphone" />
+<input type="file" name="avatar" accept="image/jpeg, image/jpg, image/png" />
 <button type="submit">Ajouter</button>
 </form>

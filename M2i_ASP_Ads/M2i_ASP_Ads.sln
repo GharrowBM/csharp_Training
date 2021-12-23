@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_ASP_Ads.ASPMVC", "M2i_ASP_Ads.ASPMVC\M2i_ASP_Ads.ASPMVC.csproj", "{A0D5BFAA-57E0-4BCD-8BDA-A6BE2A2F8DF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_ASP_Ads.Classes", "M2i_ASP_Ads.Classes\M2i_ASP_Ads.Classes.csproj", "{974ED3A6-2313-4470-9E40-36E2D54D180F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_ASP_Ads.Repositories", "M2i_ASP_Ads.Repositories\M2i_ASP_Ads.Repositories.csproj", "{A5948B11-D0C2-4506-9923-4965CD4562A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0D5BFAA-57E0-4BCD-8BDA-A6BE2A2F8DF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D5BFAA-57E0-4BCD-8BDA-A6BE2A2F8DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D5BFAA-57E0-4BCD-8BDA-A6BE2A2F8DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D5BFAA-57E0-4BCD-8BDA-A6BE2A2F8DF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{974ED3A6-2313-4470-9E40-36E2D54D180F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{974ED3A6-2313-4470-9E40-36E2D54D180F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{974ED3A6-2313-4470-9E40-36E2D54D180F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{974ED3A6-2313-4470-9E40-36E2D54D180F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5948B11-D0C2-4506-9923-4965CD4562A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5948B11-D0C2-4506-9923-4965CD4562A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5948B11-D0C2-4506-9923-4965CD4562A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5948B11-D0C2-4506-9923-4965CD4562A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
