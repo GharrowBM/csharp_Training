@@ -1,5 +1,6 @@
 using M2iASP_Ads.Classes;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace M2i_ASP_Ads.Repositories;
 
@@ -26,8 +27,8 @@ public class AdsRepository : BaseRepository, IRepository<Offer>
         return _dataContext.SaveChanges() > 0;
     }
 
-    public List<Offer> Search(Func<Offer, bool> predicate)
+    public List<Offer> Search(Expression<Func<Offer, bool>> expression)
     {
-        return _dataContext.Offers.Include(o => o.Images).Where(o => predicate(o)).ToList();
+        return _dataContext.Offers.Include(o => o.Images).Where(expression).ToList();
     }
 }

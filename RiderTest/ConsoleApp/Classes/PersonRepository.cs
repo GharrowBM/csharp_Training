@@ -10,7 +10,7 @@ public class PersonRepository : BaseRepository, IRepository<Person>
 
     public Person Get(int id)
     {
-        return _dataContext.Persons.FirstOrDefault((p => p.Id == id);
+        return _dataContext.Persons.FirstOrDefault(p => p.Id == id);
     }
 
     public List<Person> GetAll()

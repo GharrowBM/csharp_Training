@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<IRepository<Offer>, AdsRepository>();
+builder.Services.AddScoped<IRepository<User>, UserRepository>();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -24,6 +26,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "adsList",

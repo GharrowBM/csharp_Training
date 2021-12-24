@@ -2,6 +2,7 @@
 using M2iASP_Ads.Classes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace M2i_ASP_Ads.ASPMVC.Controllers
 {
@@ -9,15 +10,19 @@ namespace M2i_ASP_Ads.ASPMVC.Controllers
     {
         private IWebHostEnvironment _env;
         private IRepository<Offer> _offerRepository;
+        private IRepository<User> _userRepository;
 
-        public OfferController(IWebHostEnvironment env, IRepository<Offer> offerRepository)
+        public OfferController(IWebHostEnvironment env, IRepository<Offer> offerRepository,
+            IRepository<User> userRepository)
         {
             _env = env;
             _offerRepository = offerRepository;
+            _userRepository = userRepository;
         }
 
         public IActionResult List()
         {
+            
             return View(_offerRepository.GetAll());
         }
 
@@ -31,21 +36,55 @@ namespace M2i_ASP_Ads.ASPMVC.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult SubmitUser(User user)
+        {
+            if (_userRepository.Search(u => u.UserName == user.UserName && u.Password == user.Password)
+                    .FirstOrDefault() != null)
+            {
+                Request.HttpContext.Session.SetString("connected", "yes");
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("List");
+            }
+        }
+
+        public IActionResult Logout()
+        {
+            Request.HttpContext.Session.SetString("connected", "no");
+            return RedirectToAction("List");
+        }
+
         public IActionResult SubmitOffer(Offer offer, IFormFile[] offerImages)
         {
-            string wwwRootPath = _env.WebRootPath;
-            foreach (var image in offerImages)
-            {
-                string path = Path.Combine(wwwRootPath, "img", image.FileName);
-                using Stream stream = System.IO.File.Create(path);
-                image.CopyTo(stream);
-                string basePath = "img/" + image.FileName;
-                offer.Images.Add( new AdImage() { Path=basePath, Offer=offer});
-            }
+            bool isConnected = Request.HttpContext.Session.GetString("connected") == "yes";
             
-            _offerRepository.Save(offer);
+            if (isConnected)
+            {
+                string wwwRootPath = _env.WebRootPath;
+                foreach (var image in offerImages)
+                {
+                    string path = Path.Combine(wwwRootPath, "img", image.FileName);
+                    using Stream stream = System.IO.File.Create(path);
+                    image.CopyTo(stream);
+                    string basePath = "img/" + image.FileName;
+                    offer.Images.Add(new AdImage() {Path = basePath, Offer = offer});
+                }
 
-            return RedirectToAction("List");
+                _offerRepository.Save(offer);
+
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("List");
+            }
         }
     }
 }
