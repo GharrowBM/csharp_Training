@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject LoginService _loginService;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -13,7 +15,15 @@
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Offer" asp-action="List">Offer List</a>
-            <a class="navbar-brand" asp-area="" asp-controller="Offer" asp-action="Login">Login</a>
+            @if(_loginService.IsLogged())
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Offer" asp-action="Logout">Logout</a>
+
+                } 
+                else
+                {
+                <a class="navbar-brand" asp-area="" asp-controller="Offer" asp-action="Login">Login</a>
+                }
         </div>
     </nav>
 </header>

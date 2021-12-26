@@ -21,6 +21,11 @@ public class AdsRepository : BaseRepository, IRepository<Offer>
         return _dataContext.Offers.Include(o => o.Images).ToList();
     }
 
+    public Offer SerchOne(Expression<Func<Offer, bool>> expression)
+    {
+        return _dataContext.Offers.FirstOrDefault(expression);
+    }
+
     public bool Save(Offer entity)
     {
         _dataContext.Offers.Add(entity);

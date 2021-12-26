@@ -4,6 +4,8 @@
 @{
 	@model Offer
 	Layout = "_AdsLayout";
+	@inject FavoriteService _favoriteService;
+
 }
 <div class="row">
 	<div class="col p-1">
@@ -20,18 +22,30 @@
 		<div class="row">
 			@Model.Description
 		</div>
+
+		<div class="row">
+			@if (_favoriteService.GetFavorites().Contains(Model))
+			{
+				<a asp-controller="Offer" asp-action="RemFav" asp-route-id="@Model.Id">Retirer des favoris</a>
+			}
+			else
+			{
+				<a asp-controller="Offer" asp-action="AddFav" asp-route-id="@Model.Id">Ajouter aux favoris</a>
+
+			}
+		</div>
 	</div>
 	<div class="col p-1">
 		<h3>Images</h3>
 		<div class="row">
-		@foreach (var image in Model.Images)
-		{
-			<div class="col">
-			<img src="~/@image.Path" alt="Image-@image.Id" class="img-thumbnail rounded">
-			</div>
-		}
+			@foreach (var image in Model.Images)
+			{
+				<div class="col">
+					<img src="~/@image.Path" alt="Image-@image.Id" class="img-thumbnail rounded">
+				</div>
+			}
 		</div>
-	
+
 	</div>
 </div>
 

@@ -12,6 +12,7 @@ namespace M2i_ASP_Ads.Repositories
         T Get(int id);
         List<T> GetAll();
         List<T> Search(Expression<Func<T, bool>> expression);
+        T SerchOne(Expression<Func<T, bool>> expression);
         bool Save(T entity);
     }
 }

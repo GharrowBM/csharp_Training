@@ -3,6 +3,7 @@ using M2iASP_Ads.Classes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using M2i_ASP_Ads.ASPMVC.Services;
 
 namespace M2i_ASP_Ads.ASPMVC.Controllers
 {
@@ -10,20 +11,26 @@ namespace M2i_ASP_Ads.ASPMVC.Controllers
     {
         private IWebHostEnvironment _env;
         private IRepository<Offer> _offerRepository;
-        private IRepository<User> _userRepository;
+        private LoginService _loginService;
+        private FavoriteService _favoriteService;
 
         public OfferController(IWebHostEnvironment env, IRepository<Offer> offerRepository,
-            IRepository<User> userRepository)
+            LoginService loginService, FavoriteService favoriteService)
         {
             _env = env;
             _offerRepository = offerRepository;
-            _userRepository = userRepository;
+            _loginService = loginService;
+            _favoriteService = favoriteService;
         }
 
         public IActionResult List()
         {
-            
             return View(_offerRepository.GetAll());
+        }
+
+        public IActionResult Filter(string filter)
+        {
+            return View("List", (_offerRepository.Search(x => x.Title == filter || x.Description == filter)));
         }
 
         public IActionResult Details(int id)
@@ -43,28 +50,41 @@ namespace M2i_ASP_Ads.ASPMVC.Controllers
 
         public IActionResult SubmitUser(User user)
         {
-            if (_userRepository.Search(u => u.UserName == user.UserName && u.Password == user.Password)
-                    .FirstOrDefault() != null)
-            {
-                Request.HttpContext.Session.SetString("connected", "yes");
-                return RedirectToAction("List");
-            }
-            else
-            {
-                return RedirectToAction("List");
-            }
+            _loginService.Login(user.UserName, user.Password);
+
+            return RedirectToAction("List");
         }
 
         public IActionResult Logout()
         {
-            Request.HttpContext.Session.SetString("connected", "no");
+            _loginService.Logout();
+                
             return RedirectToAction("List");
+        }
+
+        public IActionResult AddFav(int id)
+        {
+            _favoriteService.AddFavorite(id);
+
+            return RedirectToAction("List");
+        }
+
+        public IActionResult RemFav(int id)
+        {
+            _favoriteService.RemoveFavorite(id);
+
+            return RedirectToAction("List");
+        }
+
+        public IActionResult GetFavs()
+        {
+            return RedirectToAction("List", _favoriteService.GetFavorites());
         }
 
         public IActionResult SubmitOffer(Offer offer, IFormFile[] offerImages)
         {
             bool isConnected = Request.HttpContext.Session.GetString("connected") == "yes";
-            
+
             if (isConnected)
             {
                 string wwwRootPath = _env.WebRootPath;

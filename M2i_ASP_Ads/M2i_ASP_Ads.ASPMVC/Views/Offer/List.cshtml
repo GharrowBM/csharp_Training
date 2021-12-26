@@ -4,7 +4,16 @@
 @{
 	@model List<Offer>
 	Layout = "_AdsLayout";
-}
+	}
+
+<form asp-action="Filter" asp-controller="Offer">
+	<div class="row">
+		<input type="text" name="filter" placeholder="Description or Title"/> 
+	</div>
+	<button type="submit">Filter</button>
+</form>
+
+
 <div class="row">
 	<h2>Offer List</h2>
 </div>

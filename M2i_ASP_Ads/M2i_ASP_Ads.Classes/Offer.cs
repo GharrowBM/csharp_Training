@@ -14,6 +14,8 @@ public class Offer
     public string Description { get => description; set => description = value; }
     public virtual List<AdImage> Images { get => images; set => images = value; }
 
+    public virtual List<User> Subscribers { get; set; }
+
     public Offer()
     {
         Images = new List<AdImage>();

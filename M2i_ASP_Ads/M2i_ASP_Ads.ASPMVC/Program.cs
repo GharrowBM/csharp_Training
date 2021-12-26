@@ -1,3 +1,4 @@
+using M2i_ASP_Ads.ASPMVC.Services;
 using M2i_ASP_Ads.Repositories;
 using M2iASP_Ads.Classes;
 
@@ -8,6 +9,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<IRepository<Offer>, AdsRepository>();
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
+builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<FavoriteService>();
+
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
 var app = builder.Build();
