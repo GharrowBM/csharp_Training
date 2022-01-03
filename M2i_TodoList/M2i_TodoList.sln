@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_TodoList.Classes", "M2i_TodoList.Classes\M2i_TodoList.Classes.csproj", "{4A443003-B835-4CD3-A4C7-AB011BDF04F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_TodoList.Repositories", "M2i_TodoList.Repositories\M2i_TodoList.Repositories.csproj", "{D03BB325-F754-4B62-B0F0-A4081802D3D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_TodoList.WebAPI", "M2i_TodoList.WebAPI\M2i_TodoList.WebAPI.csproj", "{4C78BD4B-A1C9-4419-B9A2-517FC2791339}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A443003-B835-4CD3-A4C7-AB011BDF04F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A443003-B835-4CD3-A4C7-AB011BDF04F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A443003-B835-4CD3-A4C7-AB011BDF04F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A443003-B835-4CD3-A4C7-AB011BDF04F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D03BB325-F754-4B62-B0F0-A4081802D3D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D03BB325-F754-4B62-B0F0-A4081802D3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D03BB325-F754-4B62-B0F0-A4081802D3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D03BB325-F754-4B62-B0F0-A4081802D3D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C78BD4B-A1C9-4419-B9A2-517FC2791339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C78BD4B-A1C9-4419-B9A2-517FC2791339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C78BD4B-A1C9-4419-B9A2-517FC2791339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C78BD4B-A1C9-4419-B9A2-517FC2791339}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
