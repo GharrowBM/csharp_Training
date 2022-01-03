@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_APICours.WebAPI", "M2i_APICours.WebAPI\M2i_APICours.WebAPI.csproj", "{C3249EFA-7E93-4841-9379-F2618358D220}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_APICours.Repositories", "M2i_APICours.Repositories\M2i_APICours.Repositories.csproj", "{FCCFFBB3-E6D3-43AC-8463-9FE4CF7DB11A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_APICours.Classes", "M2i_APICours.Classes\M2i_APICours.Classes.csproj", "{CA25FD93-10A0-409A-9636-F7E2314E4A9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3249EFA-7E93-4841-9379-F2618358D220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3249EFA-7E93-4841-9379-F2618358D220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3249EFA-7E93-4841-9379-F2618358D220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3249EFA-7E93-4841-9379-F2618358D220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCCFFBB3-E6D3-43AC-8463-9FE4CF7DB11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCCFFBB3-E6D3-43AC-8463-9FE4CF7DB11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCCFFBB3-E6D3-43AC-8463-9FE4CF7DB11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCCFFBB3-E6D3-43AC-8463-9FE4CF7DB11A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA25FD93-10A0-409A-9636-F7E2314E4A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA25FD93-10A0-409A-9636-F7E2314E4A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA25FD93-10A0-409A-9636-F7E2314E4A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA25FD93-10A0-409A-9636-F7E2314E4A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
