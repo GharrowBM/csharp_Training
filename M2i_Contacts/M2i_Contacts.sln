@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_Contacts.WebAPI", "M2i_Contacts.WebAPI\M2i_Contacts.WebAPI.csproj", "{99C6E925-D6FD-4D33-934A-815B9D975E87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_Contacts.Classes", "M2i_Contacts.Classes\M2i_Contacts.Classes.csproj", "{00AB3E79-D45D-47B7-BD7D-B73F464FEE6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2i_Contacts.Repositories", "M2i_Contacts.Repositories\M2i_Contacts.Repositories.csproj", "{9FF83CE7-1F81-4200-83CA-57D66B7BE13B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99C6E925-D6FD-4D33-934A-815B9D975E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C6E925-D6FD-4D33-934A-815B9D975E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C6E925-D6FD-4D33-934A-815B9D975E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C6E925-D6FD-4D33-934A-815B9D975E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00AB3E79-D45D-47B7-BD7D-B73F464FEE6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AB3E79-D45D-47B7-BD7D-B73F464FEE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AB3E79-D45D-47B7-BD7D-B73F464FEE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00AB3E79-D45D-47B7-BD7D-B73F464FEE6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF83CE7-1F81-4200-83CA-57D66B7BE13B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF83CE7-1F81-4200-83CA-57D66B7BE13B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF83CE7-1F81-4200-83CA-57D66B7BE13B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF83CE7-1F81-4200-83CA-57D66B7BE13B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
