@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirstApp.Views.CountPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="15">
+            <Label Text="{Binding Count}" HorizontalOptions="Center" FontSize="{Binding Count}"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Command="{Binding CountDecrementCommand}" Text="Decrement"/>
+                <Button Command="{Binding CountIncrementCommand}" Text="Increment"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
