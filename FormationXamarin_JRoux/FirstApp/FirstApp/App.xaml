@@ -3,6 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FirstApp.App">
     <Application.Resources>
+        <ResourceDictionary x:Name="Colors">
+            <Color x:Key="mainRed">#cc0000</Color>
+        </ResourceDictionary>
+        
+        <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
+            <Setter Property="BarBackgroundColor" Value="#cc0000" />
+            <Setter Property="BarTextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="#f3f6f4"></Setter>
+        </Style>
 
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="BackgroundColor" Value="#cc0000" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+        
+        <Style TargetType="Button" x:Key="RedRoundButton">
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="WidthRequest" Value="50" />
+            <Setter Property="CornerRadius" Value="25" />
+            <Setter Property="Padding" Value="15"/>
+        </Style>
+
+        <Style TargetType="Path" x:Key="svg250">
+            <Setter Property="Fill" Value="Black"/>
+            <Setter Property="Rotation" Value="180" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            <Setter Property="Aspect" Value="Uniform"/>
+            <Setter Property="HeightRequest" Value="250" />
+        </Style>
     </Application.Resources>
 </Application>

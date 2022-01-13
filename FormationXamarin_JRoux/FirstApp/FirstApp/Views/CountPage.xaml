@@ -2,13 +2,20 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FirstApp.Views.CountPage">
+             xmlns:vm="clr-namespace:FirstApp.ViewModels"
+             x:Class="FirstApp.Views.CountPage"
+             Title="Compteur">
+    
+    <ContentPage.BindingContext>
+        <vm:CountViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="15">
-            <Label Text="{Binding Count}" HorizontalOptions="Center" FontSize="{Binding Count}"/>
+            <Label Text="{Binding Count}" HorizontalOptions="Center" FontSize="30"/>
             <StackLayout Orientation="Horizontal">
-                <Button Command="{Binding CountDecrementCommand}" Text="Decrement"/>
-                <Button Command="{Binding CountIncrementCommand}" Text="Increment"/>
+                <Button Command="{Binding CountDecrementCommand}" Text="-" Style="{StaticResource RedRoundButton}"/>
+                <Button Command="{Binding CountIncrementCommand}" Text="+" Style="{StaticResource RedRoundButton}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

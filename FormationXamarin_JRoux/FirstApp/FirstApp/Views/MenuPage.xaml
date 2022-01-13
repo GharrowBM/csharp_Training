@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FirstApp.ViewModels"
+             x:Class="FirstApp.Views.MenuPage"
+             Title="Menu">
+    
+    <ContentPage.BindingContext>
+        <vm:MenuViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="10">
+            <StackLayout BackgroundColor="#cc0000">
+                <Image Source="logo.png" 
+                       HeightRequest="100"
+                       Margin="0,25,0,0"
+                       HorizontalOptions="Center"
+                       WidthRequest="100"/>
+                <Label Text="1st App" 
+                   FontSize="30"
+                   Padding="20"
+                   HorizontalTextAlignment="Center" 
+                   FontAttributes="Bold"
+                       TextColor="White"/>
+            </StackLayout>
+            <StackLayout Spacing="20">
+                <Button Command="{Binding OpenCountPageCommand}"
+                    Text="Compteur"/>
+                <Button Command="{Binding OpenTabsPageCommand}"
+                        Text="Tabs"/>
+                <Button Command="{Binding OpenListPageCommand}"
+                        Text="List"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

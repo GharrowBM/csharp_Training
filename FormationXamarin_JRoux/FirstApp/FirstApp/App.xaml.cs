@@ -1,5 +1,4 @@
-﻿using System;
-using FirstApp.Views;
+﻿using FirstApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +12,7 @@ namespace FirstApp
         {
             InitializeComponent();
 
-            MainPage = new CountPage();
+            MainPage = new NavigationPage(new MenuPage());
         }
 
         protected override void OnStart()
