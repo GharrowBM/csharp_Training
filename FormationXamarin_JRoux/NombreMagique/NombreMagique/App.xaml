@@ -4,11 +4,30 @@
              x:Class="NombreMagique.App">
     <Application.Resources>
             <ResourceDictionary>
-                <Style x:Key="Title1" TargetType="Label">
-                    <Setter Property="FontSize" Value="25" />
-                    <Setter Property="FontAttributes" Value="Bold, Italic" />
-                    <Setter Property="FontFamily" Value="Verdana" />
-                </Style>
+
+            <Color x:Key="btnBG-001">#ff0000</Color>
+            <Color x:Key="txtFG-001">#fff</Color>
+
+            <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
+                <Setter Property="BarBackgroundColor" Value="#cc0000" />
+                <Setter Property="BarTextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#f3f6f4"></Setter>
+            </Style>
+
+            <Style x:Key="logoSVG" TargetType="Path">
+                <Setter Property="Aspect" Value="Uniform"/>
+                <Setter Property="Fill" Value="Black"/>
+                <Setter Property="HeightRequest" Value="250"/>
+            </Style>
+
+            <Style x:Key="menuButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource btnBG-001}"/>
+                <Setter Property="TextColor" Value="{StaticResource txtFG-001}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
             </ResourceDictionary>
     </Application.Resources>
 </Application>

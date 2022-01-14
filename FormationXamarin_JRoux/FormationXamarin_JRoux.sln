@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApp.Droid", "FirstApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApp.iOS", "FirstApp\FirstApp.iOS\FirstApp.iOS.csproj", "{F734D07A-A8B9-4508-BC02-2B18770BB65C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NombreMagique", "NombreMagique\NombreMagique\NombreMagique.csproj", "{18805E3A-CBE9-4300-93C0-4C2C99C74A2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NombreMagique", "NombreMagique\NombreMagique\NombreMagique.csproj", "{18805E3A-CBE9-4300-93C0-4C2C99C74A2E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NombreMagique.Droid", "NombreMagique\NombreMagique.Droid\NombreMagique.Droid.csproj", "{1C40B3AC-0CAA-4992-9437-4B825D5DBC9E}"
 EndProject
@@ -161,6 +161,7 @@ Global
 		{1C40B3AC-0CAA-4992-9437-4B825D5DBC9E}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{1C40B3AC-0CAA-4992-9437-4B825D5DBC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C40B3AC-0CAA-4992-9437-4B825D5DBC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C40B3AC-0CAA-4992-9437-4B825D5DBC9E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{1C40B3AC-0CAA-4992-9437-4B825D5DBC9E}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{1C40B3AC-0CAA-4992-9437-4B825D5DBC9E}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{1C40B3AC-0CAA-4992-9437-4B825D5DBC9E}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,6 +10,32 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Assets\dog.svg" />
+      <None Remove="Assets\logo.png" />
+      <None Remove="Assets\logo_question.svg" />
+      <None Remove="Assets\sample.svg" />
+      <None Remove="Fonts\Dongle-Regular.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Assets\dog.svg" />
+      <EmbeddedResource Include="Assets\logo.png" />
+      <EmbeddedResource Include="Assets\logo_question.svg" />
+      <EmbeddedResource Include="Assets\sample.svg" />
+      <EmbeddedResource Include="Fonts\Dongle-Regular.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Views\StartPage.xaml">
+        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      </EmbeddedResource>
     </ItemGroup>
 </Project>

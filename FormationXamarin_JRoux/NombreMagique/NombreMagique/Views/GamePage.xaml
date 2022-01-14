@@ -3,13 +3,32 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NombreMagique.Views.GamePage"
-             Title="Mystery Number">
+             Title="Play a Game">
     
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Label Text="Guess the Mystery Number!"
-                   Style="{StaticResource Title1}"/>
-            <Entry Text="{Binding NumberGuess, Mode=TwoWay}"/>
+            <Label Text="{Binding WelcomeMessage}"
+                   TextColor="White"
+                   BackgroundColor="{StaticResource btnBG-001}"
+                   FontFamily="Dongle"
+                   HorizontalTextAlignment="Center"
+                   FontSize="50"/>
+            <Entry Text="{Binding NbrGuess, Mode=TwoWay}"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   WidthRequest="100"
+                   Keyboard="Numeric"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Guess!"
+                        Style="{StaticResource menuButton}"
+                    Command="{Binding TestNumberCommand}"
+                    CommandParameter="{Binding NbrGuess}"/>
+                <Button Text="New Number"
+                        Style="{StaticResource menuButton}"
+                    Command="{Binding TryAgainCommand}"
+                    CommandParameter="{Binding IsWon}"/>
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

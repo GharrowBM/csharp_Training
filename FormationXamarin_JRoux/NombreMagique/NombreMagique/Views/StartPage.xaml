@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:NombreMagique.ViewModels.Converters"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:fftransf="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="NombreMagique.Views.StartPage"
+             Title="Menu">
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="{StaticResource btnBG-001}">
+                <ffSvg:SvgCachedImage Source="resource://NombreMagique.Assets.logo.png" WidthRequest="100" Margin="0,20,0,0" />
+                <Label Text="Mystery Number!"
+                       TextColor="White"
+                   FontFamily="Dongle"
+                   FontSize="50"
+                   HorizontalOptions="Center"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,10" Padding="20">
+                    <Label Text="Difficulty: " VerticalOptions="Center" TextColor="White"/>
+                    <Picker ItemsSource="{Binding DifficultiesList}" SelectedItem="{Binding Difficulty}" HorizontalOptions="Center" TextColor="White" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10" Margin="0,25,0,0">
+                <Button Text="Start Game"
+                    Style="{StaticResource Key=menuButton}"
+                    Command="{Binding StartNewGameCommand}"
+                    CommandParameter="{Binding Difficulty}"/>
+                <Button Text="My Scores"
+                    Style="{StaticResource Key=menuButton}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

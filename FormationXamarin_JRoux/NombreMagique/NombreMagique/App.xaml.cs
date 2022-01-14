@@ -1,8 +1,11 @@
-﻿using System;
+﻿using NombreMagique.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+[assembly: ExportFont("Dongle-Regular.ttf", Alias = "Dongle")]
+
 
 namespace NombreMagique
 {
@@ -12,7 +15,7 @@ namespace NombreMagique
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new StartPage());
         }
 
         protected override void OnStart()

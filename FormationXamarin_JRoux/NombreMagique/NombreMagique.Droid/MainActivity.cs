@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading.Svg.Forms;
 
 namespace NombreMagique.Droid
 {
@@ -14,9 +15,10 @@ namespace NombreMagique.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            var ignore = typeof(SvgCachedImage);
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
