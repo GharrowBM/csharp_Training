@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="SkiaSharp">
+      <Version>2.80.3</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Svg">
       <Version>2.4.11.982</Version>
     </PackageReference>
