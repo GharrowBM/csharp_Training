@@ -7,6 +7,7 @@
 
             <Color x:Key="btnBG-001">#ff0000</Color>
             <Color x:Key="txtFG-001">#fff</Color>
+            <Color x:Key="bgColMain">#d50000</Color>
 
             <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
                 <Setter Property="BarBackgroundColor" Value="#cc0000" />

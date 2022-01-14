@@ -78,7 +78,7 @@ namespace NombreMagique.ViewModels
             }
         }
 
-        public string WelcomeMessage { get; set; }
+        public string MinMaxText { get; set; }
 
         public TestNumberCommand TestNumberCommand { get; set; }
         public TryAgainCommand TryAgainCommand { get; set; }
@@ -113,7 +113,7 @@ namespace NombreMagique.ViewModels
             }
 
             MysteryNumber = new Random().Next(MinValue, MaxValue+1);
-            WelcomeMessage = $"Guess a number between {MinValue} and {MaxValue}";
+            MinMaxText = $"between {MinValue} and {MaxValue}";
 
             TestNumberCommand = new TestNumberCommand(this);
             TryAgainCommand = new TryAgainCommand(this);
@@ -136,8 +136,7 @@ namespace NombreMagique.ViewModels
 
             if (NbrGuess == MysteryNumber)
             {
-                _page.DisplayAlert("Congratulations", $"You've won with only {NbrOfAttempts} tries!", "OK");
-                isWon = true;
+                ReturnToMainPage();                
             }
             else if (MysteryNumber > NbrGuess)
             {
@@ -149,6 +148,12 @@ namespace NombreMagique.ViewModels
             }
 
             NbrGuess = 0;
+        }
+
+        private async void ReturnToMainPage()
+        {
+            await _page.DisplayAlert("Congratulations", $"You've won with only {NbrOfAttempts} tries!", "OK");
+            _page.Navigation.PopAsync();
         }
 
         public void GenerateNewNumber()

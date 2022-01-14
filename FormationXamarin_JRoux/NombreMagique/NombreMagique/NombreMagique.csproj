@@ -14,6 +14,7 @@
       <None Remove="Assets\logo.png" />
       <None Remove="Assets\logo_question.svg" />
       <None Remove="Assets\sample.svg" />
+      <None Remove="Assets\star.svg" />
       <None Remove="Fonts\Dongle-Regular.ttf" />
     </ItemGroup>
 
@@ -22,6 +23,7 @@
       <EmbeddedResource Include="Assets\logo.png" />
       <EmbeddedResource Include="Assets\logo_question.svg" />
       <EmbeddedResource Include="Assets\sample.svg" />
+      <EmbeddedResource Include="Assets\star.svg" />
       <EmbeddedResource Include="Fonts\Dongle-Regular.ttf" />
     </ItemGroup>
 

@@ -6,12 +6,44 @@
              xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:fftransf="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="NombreMagique.Views.StartPage"
-             Title="Menu">
+             Title="Menu"
+             BackgroundColor="{StaticResource bgColMain}">
 
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <StackLayout BackgroundColor="{StaticResource btnBG-001}">
-                <ffSvg:SvgCachedImage Source="resource://NombreMagique.Assets.dog.svg" WidthRequest="100" Margin="0,20,0,0" />
+        <StackLayout>
+            <AbsoluteLayout HeightRequest="100" Margin="0,10,0,0">
+                <ffSvg:SvgCachedImage 
+                    x:Name="star1"
+                    Source="resource://NombreMagique.Assets.star.svg" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0,30,30"/>
+                <ffSvg:SvgCachedImage  
+                    x:Name="star2"
+                    Source="resource://NombreMagique.Assets.star.svg" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.4,0.25,30,30"/>
+                <ffSvg:SvgCachedImage  
+                    x:Name="star3"
+                    Source="resource://NombreMagique.Assets.star.svg" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.6,0.25,30,30"/>
+                <ffSvg:SvgCachedImage  
+                    x:Name="star4"
+                    Source="resource://NombreMagique.Assets.star.svg" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.4,0.75,30,30"/>
+                <ffSvg:SvgCachedImage  
+                    x:Name="star5"
+                    Source="resource://NombreMagique.Assets.star.svg" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.6,0.75,30,30"/>
+                <ffSvg:SvgCachedImage  
+                    x:Name="star6"
+                    Source="resource://NombreMagique.Assets.star.svg" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,1,30,30"/>
+            </AbsoluteLayout>
+            <StackLayout>
                 <Label Text="Mystery Number!"
                        TextColor="White"
                    FontFamily="Dongle"
@@ -19,16 +51,15 @@
                    HorizontalOptions="Center"/>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,10" Padding="20">
                     <Label Text="Difficulty: " VerticalOptions="Center" TextColor="White"/>
-                    <Picker ItemsSource="{Binding DifficultiesList}" SelectedItem="{Binding Difficulty}" TextColor="White" MinimumWidthRequest="100"/>
+                    <Picker ItemsSource="{Binding DifficultiesList}" SelectedItem="{Binding Difficulty}" TextColor="White" WidthRequest="100" HorizontalTextAlignment="Center"/>
                 </StackLayout>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10" Margin="0,25,0,0">
                 <Button Text="Start Game"
+                        x:Name="startButton"
                     Style="{StaticResource Key=menuButton}"
                     Command="{Binding StartNewGameCommand}"
                     CommandParameter="{Binding Difficulty}"/>
-                <Button Text="My Scores"
-                    Style="{StaticResource Key=menuButton}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

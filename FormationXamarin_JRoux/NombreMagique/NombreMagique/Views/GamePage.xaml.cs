@@ -20,6 +20,17 @@ namespace NombreMagique.Views
             InitializeComponent();
 
             BindingContext = VM = new GameVM(this, difficulty);
+
+            InfiniteScaling(guessButton);
+        }
+
+        private async void InfiniteScaling(Button button)
+        {
+            do
+            {
+                await button.ScaleTo(1.1, 1000);
+                await button.ScaleTo(1, 1000);
+            } while (true);
         }
     }
 }
