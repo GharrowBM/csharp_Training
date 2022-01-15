@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace PizzaApp.ViewModels
@@ -84,6 +86,8 @@ namespace PizzaApp.ViewModels
                 }
 
             };
+
+            Console.WriteLine(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Datas/Pizza.json"));
         }
 
         public void OnPropertyChanged(string property)

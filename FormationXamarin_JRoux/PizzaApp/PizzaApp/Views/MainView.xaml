@@ -42,7 +42,10 @@
                                              VerticalOptions="Center"
                                              HorizontalOptions="FillAndExpand">
                                     <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                    <Label Text="{Binding Ingredients, Converter={StaticResource StringListToStringConverter}}" FontAttributes="Italic"/>
+                                    <Label Text="{Binding Ingredients, Converter={StaticResource StringListToStringConverter}}" 
+                                           MaxLines="2"
+                                           LineBreakMode="TailTruncation"
+                                           FontAttributes="Italic"/>
                                 </StackLayout>
                                 <Label Grid.Column="2" Text="{Binding Price, Converter={StaticResource PriceConverter}}" VerticalOptions="Center" FontAttributes="Bold"/>
                             </Grid>
