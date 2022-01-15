@@ -1,4 +1,5 @@
-﻿using PizzaApp.Models;
+﻿using Newtonsoft.Json;
+using PizzaApp.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,8 @@ namespace PizzaApp.ViewModels
     {
         private List<Pizza> pizzas;
         private Pizza selectedPizza;
+        private string fileLocation = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Datas/Pizza.json");
+        private string message;
 
         public List<Pizza> Pizzas
         {
@@ -30,6 +33,25 @@ namespace PizzaApp.ViewModels
             {
                 selectedPizza = value;
                 OnPropertyChanged("SelectedPizza");
+            }
+        }
+
+        public string Message
+        {
+            get => message;
+            set
+            {
+                message = value;
+                OnPropertyChanged("Message");
+            }
+        }
+        public string FileLocation 
+        { 
+            get => fileLocation; 
+            set
+            {
+                fileLocation = value;
+                OnPropertyChanged("FileLocation");
             }
         }
 
@@ -87,7 +109,6 @@ namespace PizzaApp.ViewModels
 
             };
 
-            Console.WriteLine(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Datas/Pizza.json"));
         }
 
         public void OnPropertyChanged(string property)

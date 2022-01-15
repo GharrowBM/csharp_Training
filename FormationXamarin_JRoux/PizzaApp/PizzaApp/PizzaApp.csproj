@@ -11,10 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Datas\Pizza.json" />
     <None Remove="Ressources\pizza.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Datas\Pizza.json" />
     <EmbeddedResource Include="Ressources\pizza.svg" />
   </ItemGroup>
 

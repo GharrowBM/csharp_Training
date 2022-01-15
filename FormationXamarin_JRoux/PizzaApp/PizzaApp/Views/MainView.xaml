@@ -53,6 +53,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label Text="{Binding FileLocation}"/>
+            <Label Text="{Binding Message}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
