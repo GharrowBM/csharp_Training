@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:converters="clr-namespace:PizzaApp.ViewModels.Converters"
+             x:Class="PizzaApp.Views.MainView">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Margin="{OnPlatform Android='0,0,20,0', iOS='0,0,25,0', Default='0'}">
+            <ffsvg:SvgCachedImage Source="resource://PizzaApp.Ressources.pizza.svg" HeightRequest="25" WidthRequest="25"/>
+            <Label Text="Pizza App" VerticalOptions="Center" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Pizzas}" SelectedItem="{Binding SelectedPizza, Mode=TwoWay}" RowHeight="90">
+                <ListView.Resources>
+                    <converters:StringListToStringConverter x:Key="StringListToStringConverter"/>
+                    <converters:PriceConverter x:Key="PriceConverter"/>
+                </ListView.Resources>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <ff:CachedImage Grid.Column="0"
+                                                Aspect="AspectFill"
+                                    Source="{Binding ImageUrl}"/>
+                                <StackLayout Grid.Column="1"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Ingredients, Converter={StaticResource StringListToStringConverter}}" FontAttributes="Italic"/>
+                                </StackLayout>
+                                <Label Grid.Column="2" Text="{Binding Price, Converter={StaticResource PriceConverter}}" VerticalOptions="Center" FontAttributes="Bold"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
