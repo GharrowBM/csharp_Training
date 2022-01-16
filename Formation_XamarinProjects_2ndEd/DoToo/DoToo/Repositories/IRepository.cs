@@ -12,8 +12,9 @@ namespace DoToo.Repositories
         event EventHandler<T> OnEntityDeleted;
 
         Task<List<T>> GetAll();
-        Task<T> Add(T entity);
-        Task<T> Update(T entity);
+        Task Add(T entity);
+        Task Update(T entity);
+        Task UpdateOrAdd(T entity);
         Task Delete(T entity);
     }
 }
