@@ -4,6 +4,7 @@
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:converters="clr-namespace:PizzaApp.ViewModels.Converters"
+             BackgroundColor="Chocolate"
              x:Class="PizzaApp.Views.MainView">
 
     <NavigationPage.TitleView>
@@ -17,8 +18,12 @@
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
-        <StackLayout>
-            <ListView ItemsSource="{Binding Pizzas}" SelectedItem="{Binding SelectedPizza, Mode=TwoWay}" RowHeight="90">
+        <Grid>
+            <ListView
+                      IsPullToRefreshEnabled="True"
+                      IsRefreshing="{Binding LoadingVisibility}"
+                      RefreshCommand="{Binding RefreshPizzaListCommand}"
+                ItemsSource="{Binding Pizzas}" SelectedItem="{Binding SelectedPizza, Mode=TwoWay}" RowHeight="90">
                 <ListView.Resources>
                     <converters:StringListToStringConverter x:Key="StringListToStringConverter"/>
                     <converters:PriceConverter x:Key="PriceConverter"/>
@@ -53,8 +58,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label Text="{Binding FileLocation}"/>
-            <Label Text="{Binding Message}"/>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

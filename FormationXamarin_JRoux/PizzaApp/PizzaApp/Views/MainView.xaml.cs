@@ -19,7 +19,7 @@ namespace PizzaApp.Views
         {
             InitializeComponent();
 
-            BindingContext = _vm = new MainVM(); 
+            BindingContext = _vm = new MainVM(this); 
         }
     }
 }

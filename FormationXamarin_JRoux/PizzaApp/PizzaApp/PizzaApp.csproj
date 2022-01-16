@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Datas\Pizza.json" />
+    <EmbeddedResource Include="Datas\Pizza.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ressources\pizza.svg" />
   </ItemGroup>
 
