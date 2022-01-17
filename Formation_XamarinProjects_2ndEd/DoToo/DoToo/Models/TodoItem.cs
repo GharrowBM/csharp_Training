@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DoToo.Models
 {
-    internal class TodoItem
+    public class TodoItem
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
