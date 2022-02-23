@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Packt_DotNet6.Classes\Packt_DotNet6.Classes.csproj" />
+  </ItemGroup>
+
 </Project>
