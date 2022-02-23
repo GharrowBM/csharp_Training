@@ -4,7 +4,7 @@ using System.Net.NetworkInformation;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-OutputFileSystemInfo();
+WorkWithDirectories();
 
 static void OutputFileSystemInfo()
 {
@@ -34,23 +34,26 @@ static void OutputFileSystemInfo()
 static void WorkWithDirectories()
 {
     // Définir un chemin pour le nouveau dossier
-    // starting in the user's folder
-    string newFolder = Combine(
-      GetFolderPath(SpecialFolder.Personal),
-      "Code", "Chapter09", "NewFolder");
-    WriteLine($"Working with: {newFolder}");
-    // check if it exists
-    WriteLine($"Does it exist? {Exists(newFolder)}");
-    // create directory 
-    WriteLine("Creating it...");
-    CreateDirectory(newFolder);
-    WriteLine($"Does it exist? {Exists(newFolder)}");
-    Write("Confirm the directory exists, and then press ENTER: ");
-    ReadLine();
-    // delete directory 
-    WriteLine("Deleting it...");
-    Delete(newFolder, recursive: true);
-    WriteLine($"Does it exist? {Exists(newFolder)}");
+    // Démarrage dans le dossier utilisateur
+    string newFolder = Path.Combine(
+      Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+      "Code", "Packt", "NewFolder");
+    Console.WriteLine($"Chemin du dossier : {newFolder}");
+    
+    // Vérif existance
+    Console.WriteLine($"Vérification : {Directory.Exists(newFolder)}");
+    
+    // Création du dossier 
+    Console.WriteLine("Création...");
+    Directory.CreateDirectory(newFolder);
+    Console.WriteLine($"Vérification : {Directory.Exists(newFolder)}");
+    Console.Write("Vérifiez l'existance du dossier, puis appuyez sur ENTRÉE: ");
+    Console.ReadLine();
+
+    // Suppression du dossier
+    Console.WriteLine("Suppression...");
+    Directory.Delete(newFolder, recursive: true);
+    Console.WriteLine($"Vérification : {Directory.Exists(newFolder)}");
 }
 
 static void TestURIs()
