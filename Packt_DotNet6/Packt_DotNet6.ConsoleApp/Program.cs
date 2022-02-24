@@ -1,10 +1,44 @@
 ﻿using System.Diagnostics;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Xml.Serialization;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-WorkWithDirectories();
+TestSerialize();
+
+static void TestSerialize()
+{
+    void SerializeToXML(object? obj)
+    {
+        XmlSerializer xs = new(obj.GetType());
+
+        // create a file to write to
+        string path = Path.Combine(Environment.CurrentDirectory, "people.xml");
+        using (FileStream stream = File.Create(path))
+        {
+            // serialize the object graph to the stream
+            xs.Serialize(stream, obj);
+        }
+        Console.WriteLine("Written {0:N0} bytes of XML to {1}",
+          arg0: new FileInfo(path).Length,
+          arg1: path);
+        Console.WriteLine();
+
+        // Display the serialized object graph
+        Console.WriteLine(File.ReadAllText(path));
+    }
+
+    List<Animal> animals = new()
+    {
+        new Animal("Hector", "Grosminet", CollarColor.Green | CollarColor.Purple, 10),
+        new Animal("Bernard", "Rex", CollarColor.Red, 10),
+        new Animal("Jules", "Titi", CollarColor.Blue | CollarColor.White, 10),
+    };
+
+    SerializeToXML(animals);
+
+}
 
 static void OutputFileSystemInfo()
 {
