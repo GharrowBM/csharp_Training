@@ -1,42 +1,151 @@
 ﻿using System.Diagnostics;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Text.Json;
 using System.Xml.Serialization;
+using NewJson = System.Text.Json.JsonSerializer;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-TestSerialize();
+TestSerializeJSON();
 
-static void TestSerialize()
+static void TestSerializeJSON()
 {
-    void SerializeToXML(object? obj)
+    void SerializeAnimals(List<Animal> animals) 
     {
-        XmlSerializer xs = new(obj.GetType());
-
-        // create a file to write to
-        string path = Path.Combine(Environment.CurrentDirectory, "people.xml");
-        using (FileStream stream = File.Create(path))
+        // Création du fichier de sortie
+        string jsonPath = Path.Combine(Environment.CurrentDirectory, "animals.json");
+        using (StreamWriter jsonStream = File.CreateText(jsonPath))
         {
-            // serialize the object graph to the stream
-            xs.Serialize(stream, obj);
+            // Création d'un objet se chargeant de la sérialisation en JSON
+            Newtonsoft.Json.JsonSerializer jss = new();
+            // Sérialisation en tant que string
+            jss.Serialize(jsonStream, animals);
         }
-        Console.WriteLine("Written {0:N0} bytes of XML to {1}",
-          arg0: new FileInfo(path).Length,
-          arg1: path);
+        Console.WriteLine();
+        Console.WriteLine($"Written {new FileInfo(jsonPath).Length:N0} bytes of JSON to: {jsonPath}");
+        // Display de l'objet sérialisé
+        Console.WriteLine(File.ReadAllText(jsonPath));
+    }
+
+    async void DeserializeAnimals(string path)
+    {
+        using (FileStream jsonLoad = File.Open(path, FileMode.Open))
+        {
+            // Désérialisation en tant que Liste d'animaux
+            List<Animal>? loadedAnimals = await NewJson.DeserializeAsync(utf8Json: jsonLoad, returnType: typeof(List<Animal>)) as List<Animal>;
+
+            if (loadedAnimals is not null)
+            {
+                foreach (Animal a in loadedAnimals)
+                {
+                    Console.WriteLine(a);
+                }
+            }
+        }
+    }
+
+    void TestJSONPolicies(Book book)
+    {
+        JsonSerializerOptions options = new()
+        {
+            //IncludeFields = true, // Inclure tous les champs
+            PropertyNameCaseInsensitive = true, // Respect de la casse
+            WriteIndented = true, // Prettified
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase, // Pour l'utilisation dans des navigateurs de façon plus aisée
+        };
+        string filePath = Path.Combine(Environment.CurrentDirectory, "book.json");
+
+        using (Stream fileStream = File.Create(filePath))
+        {
+            JsonSerializer.Serialize<Book>(utf8Json: fileStream, value: book, options);
+        }
+
+        Console.WriteLine($"Written {new FileInfo(filePath).Length:N0} bytes of JSON to {filePath}");
         Console.WriteLine();
 
-        // Display the serialized object graph
+        // Display de l'objet en JSON
+        Console.WriteLine(File.ReadAllText(filePath));
+    }
+
+    List<Animal> animals = new()
+    {
+        new Animal("Hector", "Grosminet", CollarColor.Green | CollarColor.Purple, 10),
+        new Animal("Bernard", "Rex", CollarColor.Red, 7),
+        new Animal("Jules", "Titi", CollarColor.Blue | CollarColor.White, 4),
+    };
+
+    SerializeAnimals(animals);
+
+    Console.WriteLine();
+    DeserializeAnimals(Path.Combine(Environment.CurrentDirectory, "animals.json"));
+
+    Book csharp10 = new(title: "C# 10 and .NET 6 - Modern Cross-platform Development")
+    {
+        Author = "Mark J Price",
+        PublishDate = new(year: 2021, month: 11, day: 9),
+        Pages = 823,
+        Created = DateTimeOffset.UtcNow,
+    };
+
+    Console.WriteLine();
+    TestJSONPolicies(csharp10);
+
+}
+
+static void TestSerializeXML()
+{
+    void DeserializeAnimals(string path)
+    {
+        XmlSerializer xs = new(typeof(List<Animal>));
+
+        using (FileStream xmlLoad = File.Open(path, FileMode.Open))
+        {
+            // Désérialisation et Casting en une liste d'animaux
+            List<Animal>? loadedAnimals =
+              xs.Deserialize(xmlLoad) as List<Animal>;
+            if (loadedAnimals is not null)
+            {
+                foreach (Animal a in loadedAnimals)
+                {
+                    Console.WriteLine(a);
+                }
+            }
+        }
+    }
+
+    void SerializeAnimals(List<Animal> animals)
+    {
+        XmlSerializer xs = new(animals.GetType());
+
+        // Création du fichier pour l'export
+        string path = Path.Combine(Environment.CurrentDirectory, "animals.xml");
+        
+        // Utilisation de Using pour automatiquement .Dispose() le stream
+        using (FileStream stream = File.Create(path))
+        {
+            // Sérialization de l'objet dans le stream
+            xs.Serialize(stream, animals); // Besoin d'un constructeur par défaut
+        }
+
+        Console.WriteLine($"Written {new FileInfo(path).Length:N0} bytes of XML to {path}");
+        Console.WriteLine();
+
+        // Display de l'objet sérialisé
         Console.WriteLine(File.ReadAllText(path));
     }
 
     List<Animal> animals = new()
     {
         new Animal("Hector", "Grosminet", CollarColor.Green | CollarColor.Purple, 10),
-        new Animal("Bernard", "Rex", CollarColor.Red, 10),
-        new Animal("Jules", "Titi", CollarColor.Blue | CollarColor.White, 10),
+        new Animal("Bernard", "Rex", CollarColor.Red, 7),
+        new Animal("Jules", "Titi", CollarColor.Blue | CollarColor.White, 4),
     };
 
-    SerializeToXML(animals);
+    SerializeAnimals(animals);
+
+    Console.WriteLine();
+    DeserializeAnimals(Path.Combine(Environment.CurrentDirectory, "animals.xml"));
 
 }
 

@@ -9,27 +9,28 @@ namespace Packt_DotNet6.Classes
 {
     public class Animal
     {
-        private string _name;
-        private string _surname;
-        private CollarColor collarColor;
-        private int _age;
 
-        public string Name { get => _name;  }
-        public string Surname { get => _surname; set => _surname = value; }
-        public CollarColor CollarColor { get => collarColor; set => collarColor = value; }
-        public int Age { get => _age;  }
+        public string Name { get; init; }
+        public string Surname { get; set; }
+        public CollarColor CollarColor { get; set; }
+        public int Age { get; init; }
 
         public Animal(string name, string surname, CollarColor collarColor, int age)
         {
-            _name = name;
-            _surname = surname;
-            this.collarColor = collarColor;
-            _age = age;
+            Name = name;
+            Surname = surname;
+            CollarColor = collarColor;
+            Age = age;
         }
 
         public Animal()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} a comme surnom {Surname}, {Age} ans et un collier comportant les couleurs : {CollarColor}";
         }
     }
 }

@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Packt_DotNet6.Classes", "Pa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Packt_DotNet6.ConsoleApp", "Packt_DotNet6.ConsoleApp\Packt_DotNet6.ConsoleApp.csproj", "{32F489E7-91C0-4BA6-B623-A2D35DA46904}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packt.DotNet6.EFConsoleApp", "PAckt.DotNet6.EFConsoleApp\Packt.DotNet6.EFConsoleApp.csproj", "{20341CC7-3884-4B0E-B8ED-0BEE194AEA51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packt.DotNet6.EFClasses", "Packt.DotNet6.EFClasses\Packt.DotNet6.EFClasses.csproj", "{961A31F5-C248-4831-A603-6E888C918728}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{32F489E7-91C0-4BA6-B623-A2D35DA46904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32F489E7-91C0-4BA6-B623-A2D35DA46904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32F489E7-91C0-4BA6-B623-A2D35DA46904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20341CC7-3884-4B0E-B8ED-0BEE194AEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20341CC7-3884-4B0E-B8ED-0BEE194AEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20341CC7-3884-4B0E-B8ED-0BEE194AEA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20341CC7-3884-4B0E-B8ED-0BEE194AEA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{961A31F5-C248-4831-A603-6E888C918728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{961A31F5-C248-4831-A603-6E888C918728}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{961A31F5-C248-4831-A603-6E888C918728}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{961A31F5-C248-4831-A603-6E888C918728}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
