@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Packt_DotNet6.Classes
@@ -28,7 +29,17 @@ namespace Packt_DotNet6.Classes
         }
         public Person(string name, DateTime dateOfBirth) : this()
         {
-            _name = name;
+            string nameRegexp = @"^\w$";
+
+            if (Regex.IsMatch(name, nameRegexp))
+            {
+                _name = name;
+            }
+            else
+            {
+                throw new InvalidNameException("Ce nom n'est pas bon !");
+            }
+
             _dateOfBirth = dateOfBirth;
         }
 

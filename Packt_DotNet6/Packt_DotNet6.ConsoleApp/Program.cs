@@ -7,7 +7,31 @@ using NewJson = System.Text.Json.JsonSerializer;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-TestSerializeJSON();
+TestException();
+
+static void TestException() 
+{
+    try
+    {
+        Console.WriteLine("Génération des personnes...");
+
+        Person personA = new("Test", DateTime.Now);
+        Person personB = new("Test avec espacements", DateTime.Now);
+    }
+    catch (InvalidNameException ex)
+    {
+        Console.WriteLine($"{ex} : {ex.Message}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"{ex} : {ex.Message}");
+    }
+    finally
+    {
+        Console.WriteLine("Sortie du Try / Catch et execution du Finally");
+    }
+    
+}
 
 static void TestSerializeJSON()
 {
