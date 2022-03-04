@@ -34,6 +34,18 @@ namespace WebApp.Pages.Account
             if (result.Succeeded)
             {
                 return RedirectToPage("/Index");
+            } 
+            else
+            {
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError("Login", "You are locked out !");
+                }
+                else
+                {
+                    ModelState.AddModelError("Login", "Failed to Login...");
+
+                }
             }
 
             return Page();
