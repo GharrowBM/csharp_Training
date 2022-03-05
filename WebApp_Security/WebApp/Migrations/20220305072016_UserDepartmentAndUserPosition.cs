@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace WebApp.Migrations
 {
-    public partial class AddUserDepartmentAndPosition : Migration
+    public partial class UserDepartmentAndUserPosition : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,13 +12,15 @@ namespace WebApp.Migrations
                 name: "Department",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: false,
+                defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
                 name: "Position",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: false,
+                defaultValue: "");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
