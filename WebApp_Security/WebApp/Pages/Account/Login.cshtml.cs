@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,14 +14,18 @@ namespace WebApp.Pages.Account
         [BindProperty]
         public CredentialViewModel Credential { get; set; }
 
+        [BindProperty]
+        public IEnumerable<AuthenticationScheme> ExternalLoginProviders { get; set; }
+
         public LoginModel(SignInManager<User> signInMAnager)
         {
             _signInMAnager = signInMAnager;
         }
 
 
-        public void OnGet()
+        public async Task OnGet()
         {
+            ExternalLoginProviders = await _signInMAnager.GetExternalAuthenticationSchemesAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -38,6 +43,14 @@ namespace WebApp.Pages.Account
             } 
             else
             {
+                if (result.RequiresTwoFactor)
+                {
+                    return RedirectToPage("/Account/LoginTwoFactorWithAuthenticator", new
+                    {
+                        RememberMe = Credential.RememberMe
+                    });
+                }
+
                 if (result.IsLockedOut)
                 {
                     ModelState.AddModelError("Login", "You are locked out !");
@@ -50,6 +63,15 @@ namespace WebApp.Pages.Account
             }
 
             return Page();
+        }
+
+        public IActionResult OnPostLoginExternally(string provider)
+        {
+            var properties = _signInMAnager.ConfigureExternalAuthenticationProperties(provider, null);
+
+            properties.RedirectUri = Url.Action("ExternalLoginCallback", "Account");
+
+            return Challenge(properties, provider);
         }
     }
 
