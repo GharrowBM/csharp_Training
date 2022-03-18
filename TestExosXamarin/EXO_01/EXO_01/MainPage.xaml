@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EXO_01.MainPage"
+             BackgroundColor="#D1DFE6">
+
+    <StackLayout VerticalOptions="Center"
+                 Margin="10">
+        <Entry x:Name="emailEntry" 
+               Placeholder="Email" />
+        <Entry x:Name="passwordEntry"
+               Placeholder="Password"
+               IsPassword="True"/>
+        <Button x:Name="loginButton"
+                Text="Login"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"/>
+        
+    </StackLayout>
+
+</ContentPage>
