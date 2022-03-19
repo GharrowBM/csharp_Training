@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace EXO_01.Pages
+namespace EXO_02.Pages
 {
     public partial class MainPage : ContentPage
     {
@@ -17,9 +17,9 @@ namespace EXO_01.Pages
 
         private void loginButton_Clicked(object sender, EventArgs e)
         {
-            if (emailEntry.Text == "user@example.com" && passwordEntry.Text == "Pa$$w0rd")
+            if(emailEntry.Text == "user@example.com" && passwordEntry.Text == "Pa$$w0rd")
             {
-                Navigation.PushAsync(new TodoListPage());
+                Navigation.PushAsync(new HomePage());
             }
         }
     }

@@ -9,7 +9,9 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView x:Name="todosListView" HasUnevenRows="True">
+        <ListView x:Name="todosListView" 
+                  ItemSelected="todosListView_ItemSelected"
+                  HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -23,9 +25,9 @@
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Title}" TextColor="{StaticResource colorBlue01}" FontSize="Large" Grid.Row="0" Grid.Column="0"/>
-                            <Label Text="{Binding Description}" TextColor="White" FontSize="Default" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-                            <Label Text="{Binding IsDone}" TextColor="{StaticResource colorBlue01}" FontSize="Large" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"/>
+                            <Label Text="{Binding Title}" TextColor="{StaticResource colorBlue01}" FontSize="Large" Grid.Row="0" Grid.Column="0" FontAttributes="Bold,Italic"/>
+                            <Label Text="{Binding Description}" TextColor="White" FontSize="Default" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontAttributes="Italic"/>
+                            <CheckBox IsChecked="{Binding IsDone}" IsEnabled="False" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="End"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

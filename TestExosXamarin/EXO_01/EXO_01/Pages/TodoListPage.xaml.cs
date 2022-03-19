@@ -34,5 +34,14 @@ namespace EXO_01.Pages
         {
             Navigation.PushAsync(new AddTodoPage());
         }
+
+        private void todosListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var selectedPost = todosListView.SelectedItem as TodoItem;
+            if (selectedPost != null)
+            {
+                Navigation.PushAsync(new TodoDetailPage(selectedPost));
+            }
+        }
     }
 }

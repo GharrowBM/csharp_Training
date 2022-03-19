@@ -32,8 +32,15 @@ namespace EXO_01.Pages
                     IsDone = false
                 });
 
-                if (nbRows > 0) DisplayAlert("Réussi", "La tâche a été ajoutée avec succès", "Ok");
-                else DisplayAlert("Erreur", "Un problème est survenu lors de l'ajout de la tâche", "Ok");
+                if (nbRows > 0)
+                {
+                    DisplayAlert("Réussi", "La tâche a été ajoutée avec succès", "Ok");
+                    Navigation.PopAsync();
+                }
+                else 
+                { 
+                    DisplayAlert("Erreur", "Un problème est survenu lors de l'ajout de la tâche", "Ok"); 
+                }
             }
 
         }
