@@ -2,9 +2,12 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:EXO_01.Pages"
-             x:Class="EXO_01.Pages.HomePage">
-  <!--Pages can be added as references or inline-->
-  <local:TodoListPage Title="Todos" />
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="EXO_01.Pages.HomePage"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="{StaticResource colorBlue01}">
+    
+    <local:TodoListPage Title="Todos" IconImageSource="TodoList_Icon.png"/>
   <ContentPage Title="Tab 2" />
   <ContentPage Title="Tab 3" />
 </TabbedPage>

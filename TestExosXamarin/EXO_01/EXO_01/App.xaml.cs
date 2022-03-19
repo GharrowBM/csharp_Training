@@ -19,7 +19,9 @@ namespace EXO_01
         {
             DatabaseLocation = databaseLocation;
 
+            InitializeComponent();
 
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

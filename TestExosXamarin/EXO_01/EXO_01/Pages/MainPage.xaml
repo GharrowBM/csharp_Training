@@ -1,20 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EXO_01.Pages.MainPage"
-             BackgroundColor="#D1DFE6">
+             x:Class="EXO_01.Pages.MainPage">
 
     <StackLayout VerticalOptions="Center"
-                 Margin="10">
+                 Spacing="15"
+                 Margin="25,0">
         <Entry x:Name="emailEntry" 
-               Placeholder="Email" />
+               Style="{StaticResource mainEntry}"
+               Text="user@example.com"
+               Keyboard="Email"
+               Placeholder="Email"/>
         <Entry x:Name="passwordEntry"
+               Style="{StaticResource mainEntry}"
+               Text="Pa$$w0rd"
                Placeholder="Password"
                IsPassword="True"/>
         <Button x:Name="loginButton"
+                HorizontalOptions="Center"
                 Text="Login"
-                BackgroundColor="DodgerBlue"
-                TextColor="White"
+                Style="{StaticResource mainButton}"
                 Clicked="loginButton_Clicked"/>
         
     </StackLayout>

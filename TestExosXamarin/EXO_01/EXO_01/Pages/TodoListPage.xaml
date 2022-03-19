@@ -2,11 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EXO_01.Pages.TodoListPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+ Add Todo"
+                     x:Name="addToolbarItem"
+                     Clicked="addToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ListView x:Name="todosListView" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Title}" TextColor="{StaticResource colorBlue01}" FontSize="Large" Grid.Row="0" Grid.Column="0"/>
+                            <Label Text="{Binding Description}" TextColor="White" FontSize="Default" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding IsDone}" TextColor="{StaticResource colorBlue01}" FontSize="Large" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
