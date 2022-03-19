@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EXO_01.Pages;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +18,8 @@ namespace EXO_01
         public App(string databaseLocation)
         {
             DatabaseLocation = databaseLocation;
+
+
         }
 
         protected override void OnStart()
