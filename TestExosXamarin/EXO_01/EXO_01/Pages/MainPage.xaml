@@ -6,6 +6,7 @@
         <StackLayout VerticalOptions="Center"
                      Spacing="15"
                      Margin="25,0">
+            <Image Source="TodoList_Icon.png" HeightRequest="150" WidthRequest="150"/>
             <Entry x:Name="emailEntry" 
                    Style="{StaticResource mainEntry}"
                    Text="user@example.com"

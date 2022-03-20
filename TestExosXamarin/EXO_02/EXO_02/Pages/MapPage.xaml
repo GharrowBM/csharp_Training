@@ -5,6 +5,7 @@
              x:Class="EXO_02.Pages.MapPage">
     <ContentPage.Content>
         <maps:Map x:Name="locationsMap"
+                  IsShowingUser="False"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand"/>
     </ContentPage.Content>
